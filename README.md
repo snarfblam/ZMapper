@@ -16,7 +16,7 @@ emulator. Currently, inputs are hardcoded and use the number pad.
 * **Bomb** - Toggle bomb marker for bombable caves and dungeon walls. In dungeons, press this key followed by a directional to mark a wall which can not be bombed through.
 * **Candle** - Toggle candle marker for burnable bushes.
 * **Flute** - Toggle the recorder marker for secrets revealed by the recorder. 
-* **Screen connections** - Toggle screen connections. Draw borders around screens in the overworld, and draw connections between rooms in dungeons.
+* **Screen connections** - Press this key followed by a directional to toggle screen connections. Draw borders around screens in the overworld, and draw connections between rooms in dungeons.
 * **Point of Interest** - Mark a screen as a point of interest.
 * **Cleared** - Mark a screen as cleared. In the overworld, a cleared screen will not show any other markers (bomb, flute, or candle), but you can press this key again to unclear the screen and restore the markers.
 * **Undo** - Undoes the last change made. This does not include revealing/hiding screens.
