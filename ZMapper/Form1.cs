@@ -46,6 +46,9 @@ namespace ZMapper
         Bitmap OwPoiImage = Resources.OWPOISelector;
         Bitmap DPoiImage = Resources.DPOISelector;
 
+        bool poiMode = false;
+        int? poiFirstDigit = null;
+
         public Form1() {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
@@ -277,38 +280,77 @@ namespace ZMapper
         }
 
         void inputs_KeyPressed(object sender, MapOperationEventArgs e) {
-            var op = e.Op;
-            HandleMoveOp(op);
-            HandleWallMarkOp(op);
-            HandleWallBombMarkOp(op);
-            HandleDungeonOp(op);
+            if (poiMode) {
+                int digitValue = (int)e.Key - (int)Keys.NumPad0;
+                if (digitValue < 0 || digitValue > 9) {
+                    ExitPoiMode();
+                    return;
+                } else {
+                    if (poiFirstDigit == null) {
+                        if (digitValue == 0 || digitValue > 5) {
+                            ExitPoiMode();
+                            return;
+                        }
+                        poiFirstDigit = digitValue - 1;
+                    } else {
+                        var newDigit = (digitValue + 9) % 10;
+                        var poiValue = poiFirstDigit.Value * 10 + newDigit;
+                        AddPoi(poiValue);
+                        ExitPoiMode();
+                    }
+                }
+            } else {
+                var op = e.Op;
+                HandleMoveOp(op);
+                HandleWallMarkOp(op);
+                HandleWallBombMarkOp(op);
+                HandleDungeonOp(op);
 
-            if (op == MapOperation.MarkPoi) {
-                ModifyCurrentCell(
-                    data => data.POI = !data.POI,
-                    data => data.POI = !data.POI);
-            } else if (op == MapOperation.MarkBombed) {
-                ModifyCurrentCell(
-                    data => data.Bombed = !data.Bombed,
-                    data => data.Bombed = !data.Bombed);
-            } else if (op == MapOperation.MarkBurned) {
-                ModifyCurrentCell(
-                    data => data.Burned = !data.Burned,
-                    data => data.Burned = !data.Burned);
-            } else if (op == MapOperation.MarkFluted) {
-                ModifyCurrentCell(
-                    data => data.Fluted = !data.Fluted,
-                    data => data.Fluted = !data.Fluted);
-            } else if (op == MapOperation.MarkClear) {
-                ModifyCurrentCell(
-                    data => data.Clear = !data.Clear,
-                    data => data.Clear = !data.Clear);
-            } else if (op == MapOperation.MarkUnvisited) {
-                ModifyCurrentCell(data => data.Visited = false, null);
-            } else if (op == MapOperation.Undo) {
-                Undo();
+                if (op == MapOperation.MarkPoi) {
+                    EnterPoiMode();
+                    //ModifyCurrentCell(
+                    //    data => data.POI = !data.POI,
+                    //    data => data.POI = !data.POI);
+                } else if (op == MapOperation.MarkBombed) {
+                    ModifyCurrentCell(
+                        data => data.Bombed = !data.Bombed,
+                        data => data.Bombed = !data.Bombed);
+                } else if (op == MapOperation.MarkBurned) {
+                    ModifyCurrentCell(
+                        data => data.Burned = !data.Burned,
+                        data => data.Burned = !data.Burned);
+                } else if (op == MapOperation.MarkFluted) {
+                    ModifyCurrentCell(
+                        data => data.Fluted = !data.Fluted,
+                        data => data.Fluted = !data.Fluted);
+                } else if (op == MapOperation.MarkClear) {
+                    ModifyCurrentCell(
+                        data => data.Clear = !data.Clear,
+                        data => data.Clear = !data.Clear);
+                } else if (op == MapOperation.MarkUnvisited) {
+                    ModifyCurrentCell(data => data.Visited = false, null);
+                } else if (op == MapOperation.Undo) {
+                    Undo();
+                }
             }
+        }
 
+        private void AddPoi(int value) {
+            MessageBox.Show(value.ToString());
+        }
+
+        private void EnterPoiMode() {
+            if (!poiMode) {
+                picPOI.Visible = true;
+                poiMode = true;
+                poiFirstDigit = null;
+            }
+        }
+        private void ExitPoiMode() {
+            if (poiMode) {
+                picPOI.Visible = false;
+                poiMode = false;
+            }
         }
 
         private void HandleDungeonOp(MapOperation op) {

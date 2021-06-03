@@ -95,11 +95,13 @@ namespace ZMapper
 
                 if (op == MapOperation.MarkMode) {
                     markMode = !markMode; // Toggle mark mode
+                    this.KeyPressed.Raise(this, new MapOperationEventArgs(MapOperation.None, e.Key, e.Modifier));
                 } else if (EnableBombWallMarking && op == MapOperation.MarkBombed) {
                     bombMarkMode = !bombMarkMode; // Toggle mark mode
+                    this.KeyPressed.Raise(this, new MapOperationEventArgs(MapOperation.None, e.Key, e.Modifier));
                 } else {
                     markMode = false;
-                    this.KeyPressed.Raise(this, op);
+                    this.KeyPressed.Raise(this, new MapOperationEventArgs(op, e.Key, e.Modifier));
                 }
             }
         }
@@ -111,6 +113,10 @@ namespace ZMapper
 
     enum MapOperation
     {
+        /// <summary>
+        /// A key press was registered but does not correspond to a map operation
+        /// </summary>
+        None,
         /// <summary>
         /// Pseudo-operation that indicates that if the next operation is a 'Nav' operation it should be changed to a 'Mark' operation.
         /// </summary>
@@ -150,12 +156,13 @@ namespace ZMapper
     class MapOperationEventArgs : EventArgs
     {
         public MapOperation Op{ get; private set; }
-        public MapOperationEventArgs(MapOperation op) {
+        public MapOperationEventArgs(MapOperation op, Keys key, ModifierKeys modifier) {
             this.Op = op;
+            this.Key = key;
+            this.Modifier = modifier;
         }
 
-        public static implicit operator MapOperationEventArgs(MapOperation op) {
-            return new MapOperationEventArgs(op);
-        }
+        public Keys Key { get; private set; }
+        public ModifierKeys Modifier { get; private set; }
     }
 }
