@@ -161,6 +161,26 @@ namespace ZMapper.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DPOI {
+            get {
+                object obj = ResourceManager.GetObject("DPOI", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DPOISelector {
+            get {
+                object obj = ResourceManager.GetObject("DPOISelector", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] ItemLayout {
@@ -226,6 +246,26 @@ namespace ZMapper.Properties {
         internal static System.Drawing.Bitmap marksDungeon {
             get {
                 object obj = ResourceManager.GetObject("marksDungeon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap OWPOI {
+            get {
+                object obj = ResourceManager.GetObject("OWPOI", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap OWPOISelector {
+            get {
+                object obj = ResourceManager.GetObject("OWPOISelector", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

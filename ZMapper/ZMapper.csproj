@@ -165,6 +165,18 @@
   <ItemGroup>
     <None Include="Resources\D9.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OWPOI.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OWPOISelector.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DPOI.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DPOISelector.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

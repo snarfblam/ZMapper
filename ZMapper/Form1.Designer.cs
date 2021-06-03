@@ -27,20 +27,23 @@
             this.btnInputClass = new System.Windows.Forms.ToolStripMenuItem();
             this.FileOpener = new System.Windows.Forms.OpenFileDialog();
             this.FileSaver = new System.Windows.Forms.SaveFileDialog();
+            this.picCaption = new System.Windows.Forms.PictureBox();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnOpen = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripSplitButton();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.inputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.picCaption = new System.Windows.Forms.PictureBox();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.minimap = new ZMapper.MinimapPanel();
             this.pnlMap = new ZMapper.BufferedPanel();
             this.itemPanel1 = new ZMapper.ItemPanel();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.picPOI = new System.Windows.Forms.PictureBox();
             toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.MainToolbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCaption)).BeginInit();
+            this.itemPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPOI)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripButton1
@@ -121,6 +124,14 @@
             this.FileSaver.Filter = "JSON file (*.json)|*.json|All Files (*.*)|*.*";
             this.FileSaver.Title = "Save Tracker Data";
             // 
+            // picCaption
+            // 
+            this.picCaption.Location = new System.Drawing.Point(35, 31);
+            this.picCaption.Name = "picCaption";
+            this.picCaption.Size = new System.Drawing.Size(320, 24);
+            this.picCaption.TabIndex = 8;
+            this.picCaption.TabStop = false;
+            // 
             // btnNew
             // 
             this.btnNew.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -179,16 +190,14 @@
             // inputToolStripMenuItem
             // 
             this.inputToolStripMenuItem.Name = "inputToolStripMenuItem";
-            this.inputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.inputToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.inputToolStripMenuItem.Text = "Input";
             // 
-            // picCaption
+            // aboutToolStripMenuItem
             // 
-            this.picCaption.Location = new System.Drawing.Point(35, 31);
-            this.picCaption.Name = "picCaption";
-            this.picCaption.Size = new System.Drawing.Size(320, 24);
-            this.picCaption.TabIndex = 8;
-            this.picCaption.TabStop = false;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "About";
             // 
             // minimap
             // 
@@ -208,16 +217,22 @@
             // 
             // itemPanel1
             // 
+            this.itemPanel1.Controls.Add(this.picPOI);
             this.itemPanel1.Location = new System.Drawing.Point(35, 241);
             this.itemPanel1.Name = "itemPanel1";
             this.itemPanel1.Size = new System.Drawing.Size(333, 180);
             this.itemPanel1.TabIndex = 1;
             // 
-            // aboutToolStripMenuItem
+            // picPOI
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aboutToolStripMenuItem.Text = "About";
+            this.picPOI.Image = global::ZMapper.Properties.Resources.OWPOISelector;
+            this.picPOI.Location = new System.Drawing.Point(0, 9);
+            this.picPOI.Name = "picPOI";
+            this.picPOI.Size = new System.Drawing.Size(333, 166);
+            this.picPOI.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picPOI.TabIndex = 9;
+            this.picPOI.TabStop = false;
+            this.picPOI.Visible = false;
             // 
             // Form1
             // 
@@ -237,6 +252,8 @@
             this.MainToolbar.ResumeLayout(false);
             this.MainToolbar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCaption)).EndInit();
+            this.itemPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picPOI)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,6 +280,7 @@
         private System.Windows.Forms.ToolStripMenuItem inputToolStripMenuItem;
         private System.Windows.Forms.PictureBox picCaption;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.PictureBox picPOI;
     }
 }
 

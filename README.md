@@ -21,7 +21,6 @@ emulator. Currently, inputs are hardcoded and use the number pad.
 * **Cleared** - Mark a screen as cleared. In the overworld, a cleared screen will not show any other markers (bomb, flute, or candle), but you can press this key again to unclear the screen and restore the markers.
 * **Undo** - Undoes the last change made. This does not include revealing/hiding screens.
 * **Delete Screen** - Marks a screen as unvisited. Note that the state of markers and screen connections is preserved and will be restored when the screen is marked as visited again.
-
 * **Tilde (`)** - Switch to overworld map
 * **Digits 1-9** - (Non-number pad digits.) Switch to a dungeon map. 
 

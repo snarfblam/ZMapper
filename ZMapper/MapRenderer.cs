@@ -39,6 +39,7 @@ namespace ZMapper
         readonly Bitmap srcMarkers; // = Resources.marks;
         readonly Bitmap mapImage;
         readonly Graphics gMapImage;
+        readonly Bitmap srcPoi;
         
         MapData mapData;// = new MapData();
         public bool DungeonMap { get; private set; }
@@ -48,6 +49,8 @@ namespace ZMapper
             srcVisited = dungeon ? Resources.visitedDungeon : Resources.visited;
             srcUnvisited = dungeon ? Resources.unvisitedDungeon : Resources.unvisited;
             srcMarkers = dungeon ? Resources.marksDungeon : Resources.marks;
+            srcPoi = dungeon ? Resources.DPOI : Resources.OWPOI;
+
             mapData = new MapData(dungeon);
 
             mapImage = (Bitmap)srcUnvisited.Clone(); // verify actual clone

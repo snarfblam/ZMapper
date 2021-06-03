@@ -43,6 +43,8 @@ namespace ZMapper
         bool thumbnailUpdatePending = false;
 
         Bitmap[] LevelCaptions = { Resources.D0, Resources.D1, Resources.D2, Resources.D3, Resources.D4, Resources.D5, Resources.D6, Resources.D7, Resources.D8, Resources.D9, };
+        Bitmap OwPoiImage = Resources.OWPOISelector;
+        Bitmap DPoiImage = Resources.DPOISelector;
 
         public Form1() {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
@@ -195,6 +197,7 @@ namespace ZMapper
 
             inputs.EnableBombWallMarking = true;
             picCaption.Image = LevelCaptions[currentDungeonIndex + 1];
+            picPOI.Image = DPoiImage;
         }
 
         private void ExitDungeonMode() {
@@ -222,6 +225,7 @@ namespace ZMapper
 
             inputs.EnableBombWallMarking = false;
             picCaption.Image = LevelCaptions[0];
+            picPOI.Image = OwPoiImage;
         }
 
 
