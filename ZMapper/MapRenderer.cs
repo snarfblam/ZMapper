@@ -115,10 +115,6 @@ namespace ZMapper
                     if (!data.Fluted) markers.Add(MapMarkers.flute);
                 }
 
-                if (data.Walls.Test(Direction.Up)) markers.Add(MapMarkers.wallNorth);
-                if (data.Walls.Test(Direction.Right)) markers.Add(MapMarkers.wallEast);
-                if (data.Walls.Test(Direction.Down)) markers.Add(MapMarkers.wallSouth);
-                if (data.Walls.Test(Direction.Left)) markers.Add(MapMarkers.wallWest);
 
                 // Always shows (see below)
                 //if (data.BombedWalls.Test(Direction.Up)) markers.Add(MapMarkers.bombedNorth);
@@ -127,6 +123,11 @@ namespace ZMapper
                 //if (data.BombedWalls.Test(Direction.Left)) markers.Add(MapMarkers.bombedWest);
 
             }
+
+            if (data.Walls.Test(Direction.Up)) markers.Add(MapMarkers.wallNorth);
+            if (data.Walls.Test(Direction.Right)) markers.Add(MapMarkers.wallEast);
+            if (data.Walls.Test(Direction.Down)) markers.Add(MapMarkers.wallSouth);
+            if (data.Walls.Test(Direction.Left)) markers.Add(MapMarkers.wallWest);
 
 
             // Bombed-wall markers always show, regardless of visited status
