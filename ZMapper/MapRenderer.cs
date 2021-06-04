@@ -88,6 +88,7 @@ namespace ZMapper
             gMapImage.DrawImage(baseImg, mapRect, mapRect, GraphicsUnit.Pixel);
 
 
+            bool hasPoi = data.PoiMarkers.Count > 0;
             var markers = new List<MapMarkers>();
 
             if (data.Visited) {
@@ -108,7 +109,7 @@ namespace ZMapper
                     }
                 }
 
-                if (!data.Clear) {
+                if (!data.Clear && !hasPoi) { // 'Clear' flag and POI markers are each mutually exclusive with bomb/fire/flute markers
                     if (!data.Bombed) markers.Add(MapMarkers.bomb);
                     if (!data.Burned) markers.Add(MapMarkers.fire);
                     if (!data.Fluted) markers.Add(MapMarkers.flute);
@@ -140,10 +141,50 @@ namespace ZMapper
                 gMapImage.DrawImage(srcMarkers, mapRect, markerSrcRect, GraphicsUnit.Pixel);
             }
 
+            if (data.PoiMarkers.Count == 1) {
+                var srcRect = GetPoiSource(data.PoiMarkers[0]);
+                gMapImage.DrawImage(srcPoi, mapRect, srcRect, GraphicsUnit.Pixel);
+            } else if (data.PoiMarkers.Count > 1) {
+                var interp = gMapImage.InterpolationMode;
+                var poffset = gMapImage.PixelOffsetMode;
+                gMapImage.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
+                gMapImage.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
+
+                var pois = data.PoiMarkers;
+                for (var i = 0; i < pois.Count; i++) {
+                    var srcRect = GetMiniPoiSource(pois[i]);
+                    var dstRect = GetMiniPoiRectRelative(i);
+                    dstRect.X += mapRect.X;
+                    dstRect.Y += mapRect.Y;
+                    gMapImage.DrawImage(srcPoi, dstRect, srcRect, GraphicsUnit.Pixel);
+                }
+
+                gMapImage.InterpolationMode = interp;
+                gMapImage.PixelOffsetMode = poffset;
+            }
 
             return mapRect;
         }
 
+        static Rectangle GetPoiSource(int poiIndex) {
+            int x = poiIndex % 10;
+            int y = poiIndex / 10;
+            return new Rectangle(x * TileSize, y * TileSize, TileSize, TileSize);
+        }
+        static Rectangle GetMiniPoiSource(int poiIndex) {
+            const int margin = (TileSize - 16) / 2;
+
+            int x = poiIndex % 10;
+            int y = poiIndex / 10;
+            return new Rectangle(x * TileSize + margin, y * TileSize + margin, TileSize - (2 * margin), TileSize - (2 * margin));
+        }
+        static Rectangle GetMiniPoiRectRelative(int positionIndex) {
+            // limit to 0...3 range
+            int x = (positionIndex % 2) & 1;
+            int y = (positionIndex / 2) & 1;
+
+            return new Rectangle(x * (TileSize / 2), y * (TileSize / 2), TileSize / 2, TileSize / 2);
+        }
     }
 
     enum MapMarkers

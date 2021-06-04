@@ -109,6 +109,13 @@ namespace ZMapper
         public void Dispose() {
             this.hook.Dispose();
         }
+
+        /// <summary>
+        /// Disables any input "modifiers", e.g. marker mode
+        /// </summary>
+        internal void CancelModifiers() {
+            this.markMode = false;
+        }
     }
 
     enum MapOperation

@@ -281,6 +281,11 @@ namespace ZMapper
 
         void inputs_KeyPressed(object sender, MapOperationEventArgs e) {
             if (poiMode) {
+                if (e.Op == MapOperation.MarkClear) {
+                    RemovePois();
+                    ExitPoiMode();
+                }
+
                 int digitValue = (int)e.Key - (int)Keys.NumPad0;
                 if (digitValue < 0 || digitValue > 9) {
                     ExitPoiMode();
@@ -336,8 +341,32 @@ namespace ZMapper
         }
 
         private void AddPoi(int value) {
-            MessageBox.Show(value.ToString());
+            CellModifierMaker doer = (ScreenData orig) => {
+                return (ScreenData data) => data.AddPOIMarker(value);
+            };
+            CellModifierMaker undoer = (ScreenData orig) => {
+                var origMarkers = new List<int>(orig.PoiMarkers);
+                return (ScreenData data) => {
+                    data.ClearPOIMarkers();
+                    foreach (var m in origMarkers) data.AddPOIMarker(m);
+                };
+            };
+            ModifyCurrentCell(doer, undoer);
         }
+        private void RemovePois() {
+            CellModifierMaker doer = (ScreenData orig) => {
+                return (ScreenData data) => data.ClearPOIMarkers();
+            };
+            CellModifierMaker undoer = (ScreenData orig) => {
+                var origMarkers = new List<int>(orig.PoiMarkers);
+                return (ScreenData data) => {
+                    data.ClearPOIMarkers();
+                    foreach (var m in origMarkers) data.AddPOIMarker(m);
+                };
+            };
+            ModifyCurrentCell(doer, undoer);
+        }
+    
 
         private void EnterPoiMode() {
             if (!poiMode) {
@@ -350,6 +379,7 @@ namespace ZMapper
             if (poiMode) {
                 picPOI.Visible = false;
                 poiMode = false;
+                inputs.CancelModifiers();
             }
         }
 
@@ -389,11 +419,22 @@ namespace ZMapper
         }
 
         delegate void CellModifier(ScreenData data);
+        delegate CellModifier CellModifierMaker(ScreenData data);
 
-  
+
 
         void ModifyCurrentCell(CellModifier mod, CellModifier undo) {
             ModifyCell(cursorX, cursorY, mod, undo);
+        }
+        void ModifyCurrentCell(CellModifierMaker mod, CellModifierMaker undo) {
+            ModifyCell(cursorX, cursorY, mod, undo);
+        }
+        void ModifyCell(int x, int y, CellModifierMaker mod, CellModifierMaker undo) {
+            var screenData = this.currentMap.MapData[x, y];
+            CellModifier doer = mod(screenData);
+            CellModifier undoer = (undo == null) ? null : undo(screenData);
+
+            ModifyCell(x, y, doer, undoer);
         }
         void ModifyCell(int x, int y, CellModifier mod, CellModifier undo) {
             if (undo == null) {
@@ -404,6 +445,38 @@ namespace ZMapper
                     () => ModifyCellInternal(x, y, undo),
                     false);
             }
+        }
+
+        struct CellAction
+        {
+            public CellAction(int x, int y, CellModifier action, CellModifier undoAction) 
+            :this(){
+                this.X = x;
+                this.Y = y;
+                this.Action = action;
+                this.UndoAction = action;
+            }
+            public int X { get; private set; }
+            public int Y { get; private set; }
+            public CellModifier Action { get; set; }
+            public CellModifier UndoAction { get; set; }
+        }
+        void ModifyCellsComposite(params CellAction[] actions) {
+            Action doer = () => {
+                for (int i = 0; i < actions.Length; i++) {
+                    var action = actions[i];
+                    var data = this.currentMap.MapData[action.Y, action.Y];
+                    ModifyCellInternal(action.X, action.Y, action.Action);
+                }
+            };
+            Action undoer = () => {
+                for (int i = actions.Length - 1; i >= 0; i--) {
+                    var action = actions[i];
+                    var data = this.currentMap.MapData[action.Y, action.Y];
+                    ModifyCellInternal(action.X, action.Y, action.UndoAction);
+                }
+            };
+            Do(doer, undoer, false);
         }
 
         private void ModifyCellInternal(int x, int y, CellModifier mod) {
@@ -467,69 +540,115 @@ namespace ZMapper
 
 
 
+
+            CellAction? thisAction = null;
             if (thisWall != null) {
-                this.ModifyCurrentCell(
+                thisAction = new CellAction(cursorX, cursorY,
                     data => data.Walls = data.Walls.Toggle(thisWall.Value),
                     data => data.Walls = data.Walls.Toggle(thisWall.Value));
-            }
-            HandleWallMarkOpAdjacent(-1, 0, westWall);
-            HandleWallMarkOpAdjacent(0, -1, northWall);
-            HandleWallMarkOpAdjacent(0, 1, southWall);
-            HandleWallMarkOpAdjacent(1, 0, eastWall);
-        }
-         private void HandleWallBombMarkOp(MapOperation op) {
-                    Direction? thisWall = null;
-                    Direction? northWall = null;
-                    Direction? southWall = null;
-                    Direction? eastWall = null;
-                    Direction? westWall = null;
 
-                    if (op == MapOperation.MarkBombedWest) {
-                        thisWall = Direction.Left;
-                        westWall = Direction.Right;
-                    } else if (op == MapOperation.MarkBombedEast) {
-                        thisWall = Direction.Right;
-                        eastWall = Direction.Left;
-                    } else if (op == MapOperation.MarkBombedSouth) {
-                        thisWall = Direction.Down;
-                        southWall = Direction.Up;
-                    } else if (op == MapOperation.MarkBombedNorth) {
-                        thisWall = Direction.Up;
-                        northWall = Direction.Down;
-                    }
-
-                    if (thisWall != null) {
-                        this.ModifyCurrentCell(
-                            data => data.BombedWalls = data.BombedWalls.Toggle(thisWall.Value),
-                            data => data.BombedWalls = data.BombedWalls.Toggle(thisWall.Value));
-                    }
-                    HandleWallBombMarkOpAdjacent(-1, 0, westWall);
-                    HandleWallBombMarkOpAdjacent(0, -1, northWall);
-                    HandleWallBombMarkOpAdjacent(0, 1, southWall);
-                    HandleWallBombMarkOpAdjacent(1, 0, eastWall);
+                CellAction? otherAction =
+                    HandleWallMarkOpAdjacent(-1, 0, westWall) ??
+                    HandleWallMarkOpAdjacent(0, -1, northWall) ??
+                    HandleWallMarkOpAdjacent(0, 1, southWall) ??
+                    HandleWallMarkOpAdjacent(1, 0, eastWall);
+                if (otherAction == null) {
+                    ModifyCellsComposite(thisAction.Value);
+                } else {
+                    ModifyCellsComposite(thisAction.Value, otherAction.Value);
                 }
-         private void HandleWallMarkOpAdjacent(int dx, int dy, Direction? toggle) {
-             if (toggle != null) {
-                 int x = cursorX + dx;
-                 int y = cursorY + dy;
-                 if (x >= 0 && x < MapData.MapWidth && y >= 0 && y < MapData.MapHeight) {
-                     ModifyCell(x, y,
-                         data => data.Walls = data.Walls.Toggle(toggle.Value),
-                         data => data.Walls = data.Walls.Toggle(toggle.Value));
-                 }
-             }
-         }
-         private void HandleWallBombMarkOpAdjacent(int dx, int dy, Direction? toggle) {
-             if (toggle != null) {
-                 int x = cursorX + dx;
-                 int y = cursorY + dy;
-                 if (x >= 0 && x < MapData.MapWidth && y >= 0 && y < MapData.MapHeight) {
-                     ModifyCell(x, y,
-                         data => data.BombedWalls = data.BombedWalls.Toggle(toggle.Value),
-                         data => data.BombedWalls = data.BombedWalls.Toggle(toggle.Value));
-                 }
-             }
-         }
+            }
+        }
+
+        private void HandleWallBombMarkOp(MapOperation op) {
+            Direction? thisWall = null;
+            Direction? northWall = null;
+            Direction? southWall = null;
+            Direction? eastWall = null;
+            Direction? westWall = null;
+
+            if (op == MapOperation.MarkBombedWest) {
+                thisWall = Direction.Left;
+                westWall = Direction.Right;
+            } else if (op == MapOperation.MarkBombedEast) {
+                thisWall = Direction.Right;
+                eastWall = Direction.Left;
+            } else if (op == MapOperation.MarkBombedSouth) {
+                thisWall = Direction.Down;
+                southWall = Direction.Up;
+            } else if (op == MapOperation.MarkBombedNorth) {
+                thisWall = Direction.Up;
+                northWall = Direction.Down;
+            }
+
+            CellAction? thisAction = null;
+            if (thisWall != null) {
+                thisAction = new CellAction(cursorX, cursorY,
+                    data => data.BombedWalls = data.BombedWalls.Toggle(thisWall.Value),
+                    data => data.BombedWalls = data.BombedWalls.Toggle(thisWall.Value));
+
+                CellAction? otherAction =
+                    HandleWallBombMarkOpAdjacent(-1, 0, westWall) ??
+                    HandleWallBombMarkOpAdjacent(0, -1, northWall) ??
+                    HandleWallBombMarkOpAdjacent(0, 1, southWall) ??
+                    HandleWallBombMarkOpAdjacent(1, 0, eastWall);
+                if (otherAction == null) {
+                    ModifyCellsComposite(thisAction.Value);
+                } else {
+                    ModifyCellsComposite(thisAction.Value, otherAction.Value);
+                }
+            }
+        }
+        private CellAction? HandleWallMarkOpAdjacent(int dx, int dy, Direction? toggle) {
+            if (toggle != null) {
+                int x = cursorX + dx;
+                int y = cursorY + dy;
+                if (x >= 0 && x < MapData.MapWidth && y >= 0 && y < MapData.MapHeight) {
+                    return new CellAction(x, y,
+                        data => data.Walls = data.Walls.Toggle(toggle.Value),
+                        data => data.Walls = data.Walls.Toggle(toggle.Value)
+                    );
+                }
+            }
+
+            return null;
+        }
+        //private void HandleWallMarkOpAdjacent(int dx, int dy, Direction? toggle) {
+        //    if (toggle != null) {
+        //        int x = cursorX + dx;
+        //        int y = cursorY + dy;
+        //        if (x >= 0 && x < MapData.MapWidth && y >= 0 && y < MapData.MapHeight) {
+        //            ModifyCell(x, y,
+        //                data => data.Walls = data.Walls.Toggle(toggle.Value),
+        //                data => data.Walls = data.Walls.Toggle(toggle.Value));
+        //        }
+        //    }
+        //}
+        //private void HandleWallBombMarkOpAdjacent(int dx, int dy, Direction? toggle) {
+        //    if (toggle != null) {
+        //        int x = cursorX + dx;
+        //        int y = cursorY + dy;
+        //        if (x >= 0 && x < MapData.MapWidth && y >= 0 && y < MapData.MapHeight) {
+        //            ModifyCell(x, y,
+        //                data => data.BombedWalls = data.BombedWalls.Toggle(toggle.Value),
+        //                data => data.BombedWalls = data.BombedWalls.Toggle(toggle.Value));
+        //        }
+        //    }
+        //}
+        private CellAction? HandleWallBombMarkOpAdjacent(int dx, int dy, Direction? toggle) {
+            if (toggle != null) {
+                int x = cursorX + dx;
+                int y = cursorY + dy;
+                if (x >= 0 && x < MapData.MapWidth && y >= 0 && y < MapData.MapHeight) {
+                    return new CellAction(x, y,
+                        data => data.BombedWalls = data.BombedWalls.Toggle(toggle.Value),
+                        data => data.BombedWalls = data.BombedWalls.Toggle(toggle.Value)
+                    );
+                }
+            }
+
+            return null;
+        }
 
         /// <summary>
         /// Clean up any resources being used.

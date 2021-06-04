@@ -108,6 +108,24 @@ namespace ZMapper
         public string Note { get; set; }
         public Direction Walls { get; set; }
         public Direction BombedWalls { get; set; }
+        List<int> poiMarkers = new List<int>();
+        IList<int> poiPublic;
+
+        public ScreenData() {
+            this.poiPublic = poiMarkers.AsReadOnly();
+        }
+        /// <summary>
+        /// Gets a read-only list of POI markers. This list is NOT immutable and may or may not change if POI markers are added or removed.
+        /// </summary>
+        public IList<int> PoiMarkers { get { return poiPublic; } }
+
+        public void AddPOIMarker(int index) {
+            this.poiMarkers.Add(index);
+        }
+
+        public void ClearPOIMarkers() {
+            this.poiMarkers.Clear();
+        }
 
         public ushort GetData() {
             var raw = new BitArray32();
