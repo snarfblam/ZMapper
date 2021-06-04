@@ -173,6 +173,16 @@ namespace ZMapper.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DPOIMini {
+            get {
+                object obj = ResourceManager.GetObject("DPOIMini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DPOISelector {
             get {
                 object obj = ResourceManager.GetObject("DPOISelector", resourceCulture);
@@ -256,6 +266,16 @@ namespace ZMapper.Properties {
         internal static System.Drawing.Bitmap OWPOI {
             get {
                 object obj = ResourceManager.GetObject("OWPOI", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap OWPOIMini {
+            get {
+                object obj = ResourceManager.GetObject("OWPOIMini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

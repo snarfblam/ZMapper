@@ -40,6 +40,7 @@ namespace ZMapper
         readonly Bitmap mapImage;
         readonly Graphics gMapImage;
         readonly Bitmap srcPoi;
+        readonly Bitmap srcPoiMini;
         
         MapData mapData;// = new MapData();
         public bool DungeonMap { get; private set; }
@@ -50,6 +51,7 @@ namespace ZMapper
             srcUnvisited = dungeon ? Resources.unvisitedDungeon : Resources.unvisited;
             srcMarkers = dungeon ? Resources.marksDungeon : Resources.marks;
             srcPoi = dungeon ? Resources.DPOI : Resources.OWPOI;
+            srcPoiMini = dungeon ? Resources.DPOIMini : Resources.OWPOIMini;
 
             mapData = new MapData(dungeon);
 
@@ -146,10 +148,10 @@ namespace ZMapper
                 var srcRect = GetPoiSource(data.PoiMarkers[0]);
                 gMapImage.DrawImage(srcPoi, mapRect, srcRect, GraphicsUnit.Pixel);
             } else if (data.PoiMarkers.Count > 1) {
-                var interp = gMapImage.InterpolationMode;
-                var poffset = gMapImage.PixelOffsetMode;
-                gMapImage.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
-                gMapImage.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
+                //var interp = gMapImage.InterpolationMode;
+                //var poffset = gMapImage.PixelOffsetMode;
+                //gMapImage.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
+                //gMapImage.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
 
                 var pois = data.PoiMarkers;
                 for (var i = 0; i < pois.Count; i++) {
@@ -157,11 +159,11 @@ namespace ZMapper
                     var dstRect = GetMiniPoiRectRelative(i);
                     dstRect.X += mapRect.X;
                     dstRect.Y += mapRect.Y;
-                    gMapImage.DrawImage(srcPoi, dstRect, srcRect, GraphicsUnit.Pixel);
+                    gMapImage.DrawImage(srcPoiMini, dstRect, srcRect, GraphicsUnit.Pixel);
                 }
 
-                gMapImage.InterpolationMode = interp;
-                gMapImage.PixelOffsetMode = poffset;
+                //gMapImage.InterpolationMode = interp;
+                //gMapImage.PixelOffsetMode = poffset;
             }
 
             return mapRect;
@@ -173,11 +175,16 @@ namespace ZMapper
             return new Rectangle(x * TileSize, y * TileSize, TileSize, TileSize);
         }
         static Rectangle GetMiniPoiSource(int poiIndex) {
-            const int margin = (TileSize - 16) / 2;
+            const int halfTile = TileSize / 2;
 
             int x = poiIndex % 10;
             int y = poiIndex / 10;
-            return new Rectangle(x * TileSize + margin, y * TileSize + margin, TileSize - (2 * margin), TileSize - (2 * margin));
+            return new Rectangle(x * halfTile, y * halfTile, halfTile, halfTile);
+            //const int margin = (TileSize - 16) / 2;
+
+            //int x = poiIndex % 10;
+            //int y = poiIndex / 10;
+            //return new Rectangle(x * TileSize + margin, y * TileSize + margin, TileSize - (2 * margin), TileSize - (2 * margin));
         }
         static Rectangle GetMiniPoiRectRelative(int positionIndex) {
             // limit to 0...3 range
