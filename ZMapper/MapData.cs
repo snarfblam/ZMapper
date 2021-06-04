@@ -40,7 +40,7 @@ namespace ZMapper
         public Cereal Serialize() {
             Cereal mapData = new Cereal();
             var notesData = Cereal.List();
-            mapData["notes"] = notesData;
+            var poiData = Cereal.List();
 
             byte[] rawMap = new byte[MapWidth * MapHeight * 2];
             int ptr = 0;
@@ -61,10 +61,20 @@ namespace ZMapper
                         noteData["note"] = note;
                         notesData.Add(noteData);
                     }
+                    var poiList = this.screens[x, y].PoiMarkers;
+                    if (poiList.Count > 0) {
+                        var poi = new Cereal();
+                        poi["x"] = x;
+                        poi["y"] = y;
+                        poi["poi"] = new List<int>(poiList);
+                        poiData.Add(poi);
+                    }
                 }
             }
 
             var base64 = Convert.ToBase64String(rawMap);
+            mapData["notes"] = notesData;
+            mapData["poi"] = poiData;
             mapData["data"] = base64;
 
             return mapData;
@@ -88,9 +98,23 @@ namespace ZMapper
             if (notesData != null) {
                 foreach (Cereal note in notesData) {
                     var x = note.Int["x"] ?? 0;
-                    var y = note.Int["x"] ?? 0;
+                    var y = note.Int["y"] ?? 0;
                     var noteText = note.String["note"];
                     if (noteText != null) this.screens[x, y].Note = noteText;
+                }
+            }
+
+            var poiData = data.Array["poi"];
+            if (poiData != null) {
+                foreach (Cereal poi in poiData) {
+                    var x = poi.Int["x"] ?? 0;
+                    var y = poi.Int["y"] ?? 0;
+                    var items = poi.Array["poi"];
+                    if (items != null) {
+                        foreach (var item in items) {
+                            if (item is int) this.screens[x, y].AddPOIMarker((int)item);
+                        }
+                    }
                 }
             }
         }
