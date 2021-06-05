@@ -1,0 +1,12 @@
+﻿Now
+- Serialize cursor position
+- Improve dungeon stair numbers
+- Improve mini stamps - still too small and blurry. THEY CAN BE 12x12!
+- Save "Active" settings
+
+Soon
+- Custom icon
+
+And then
+- HTML help
+- Configurable input
