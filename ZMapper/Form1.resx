@@ -169,20 +169,36 @@
   <data name="toolStripDropDownButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
+</value>
+  </data>
+  <data name="toolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIxSURBVDhPfZP9T1JhHMWf/6A/5f5J/dSMgU3EombMIYH2
+        umatG6+C9jbXcstWMwsL09RcBL2wwVVe2mzM6GKgQMBOnIcLc2323c52nvP9nPvc3e2K4yY8cx9HZcTH
+        TzAYVHyBiO73R07yHAhF0G63peiZcUeGLM/9UdWgEgjP6l++fkMoPAtV9c3f9QVRr9dRq9Uw9/iJzLgj
+        Q5Ydoy7ErdvebPxTEpVKFYXCd2xsbslyb+iZ5QsFyZBlx6gLMTWlKndUr65t76DZbKJYLCIajWLh6YIU
+        PTPuyJBlx6h35+qNm9PvVtdQKpWwEoshkUhC0zQpembckSFr1ISYvHIdlNcfQrVaRSqVQiajIbayionJ
+        a3GKPp3OyB2ZXocSlzyXkc3lkcsX5Ctmczl5HvdMxI07BD0z7v5Ihj4PdoXT5Ua6cyPFj7W7+0N657i7
+        /wB6ZvwO9XoDGW27y3S6wjHmRE96uYxyRzvZHJ49f4GLDmecoueN3JFxuT39jnGHEOdHHdPR5Tc4PKx1
+        wH35tRPJz1K8jRl3ZMgate5Y7XblwqhDjy6/xd7eTzQaDVQPDrD/u4Jfell6ZtyRIcuOLNvt9hNWmy37
+        8NEc3q9vYnHpFRZfLsnXbbVaUvTMuCNDlh35AI7FalVsZ+36zL0HGB45h8Eh6/yY04UPWx+xtr6BoeER
+        mXFHhiw7Rr07FotFGTCZ9dPmM/JnMpkH8brzuhQ9M+7IkOX5v3NqwISjMuJ/Roi/UWFXtWhCMRQAAAAA
+        SUVORK5CYII=
 </value>
   </data>
   <metadata name="FileOpener.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

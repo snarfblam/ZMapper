@@ -81,15 +81,16 @@
             // toolStripButton2
             // 
             this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnInputAlways,
             this.btnInputCaption,
             this.btnInputClass});
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(62, 22);
-            this.toolStripButton2.Text = "Options";
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 22);
+            this.toolStripButton2.Text = "Settings";
             // 
             // btnInputAlways
             // 
@@ -190,18 +191,18 @@
             // inputToolStripMenuItem
             // 
             this.inputToolStripMenuItem.Name = "inputToolStripMenuItem";
-            this.inputToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.inputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.inputToolStripMenuItem.Text = "Input";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // minimap
             // 
-            this.minimap.Location = new System.Drawing.Point(415, 82);
+            this.minimap.Location = new System.Drawing.Point(418, 58);
             this.minimap.Name = "minimap";
             this.minimap.Size = new System.Drawing.Size(304, 304);
             this.minimap.TabIndex = 6;
