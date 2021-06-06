@@ -28,16 +28,17 @@ namespace ZMapper
         MapRenderer currentMap;
         GlobalInputs inputs = new GlobalInputs();
 
+        Point currentCursor { get { return currentMap.MapData.CursorPosition; } set { currentMap.MapData.CursorPosition = value; } }
+        int cursorX { get { return currentCursor.X; } set { currentCursor = new Point(value, currentCursor.Y); } }
+        int cursorY { get { return currentCursor.Y; } set { currentCursor = new Point(currentCursor.X, value); } }
+
         bool cursorOn = false;
-        int cursorX = 0;
-        int cursorY = 0;
         List<Cereal> dungeonData = new List<Cereal>() { null, null, null, null, null, null, null, null, null, };
         /// <summary>
         /// Zero based! (0 is level 1, 1 is level 2, etc)
         /// </summary>
         int currentDungeonIndex = 0;
-        Point owCursorPos = new Point(7, 7);
-        List<Point?> dungeonCursorPos = new List<Point?> { null, null, null, null, null, null, null, null, null, };
+
         static readonly Point DefaultCursorPos = new Point(7,7);
         ActiveWinTracker activeWindowTracker;
         bool thumbnailUpdatePending = false;
@@ -180,7 +181,7 @@ namespace ZMapper
             undoQueue.Clear();
             redoQueue.Clear();
 
-            owCursorPos = new Point(cursorX,cursorY);
+            currentMap.MapData.CursorPosition = new Point(cursorX, cursorY);
             currentDungeonIndex = dungeonIndex;
             currentMap = dungeonMap;
             var mapData = dungeonData[dungeonIndex];
@@ -191,9 +192,9 @@ namespace ZMapper
             }
 
             cursorOn = false;
-            var cursorPos = dungeonCursorPos[dungeonIndex] ?? DefaultCursorPos;
-            cursorX = cursorPos.X;
-            cursorY = cursorPos.Y;
+            var cursorPos = currentMap.MapData.CursorPosition;
+            //cursorX = cursorPos.X;
+            //cursorY = cursorPos.Y;
             currentMap.RenderEntireMap();
             pnlMap.BackgroundImage = currentMap.MapImage;
             pnlMap.Invalidate();
@@ -210,25 +211,39 @@ namespace ZMapper
             redoQueue.Clear();
 
             // Save map data
-            var mapData = currentMap.MapData.Serialize();
-            dungeonData[currentDungeonIndex] = mapData;
-            dungeonCursorPos[currentDungeonIndex] = new Point(cursorX, cursorY);
+            SaveCurrentDungeonData();
+            currentMap.MapData.CursorPosition = new Point(cursorX, cursorY);
             if (cursorOn) ToggleCursor();
             this.minimap.UpdateThumb(currentMap.MapImage, currentDungeonIndex);
 
             cursorOn = false;
-            var cursorPos = owCursorPos;
-            cursorX = cursorPos.X;
-            cursorY = cursorPos.Y;
 
             currentMap = owMap;
             currentMap.RenderEntireMap();
+            var cursorPos = currentMap.MapData.CursorPosition;
+            //cursorX = cursorPos.X;
+            //cursorY = cursorPos.Y;
             pnlMap.BackgroundImage = currentMap.MapImage;
             pnlMap.Invalidate();
 
             inputs.EnableBombWallMarking = false;
             picCaption.Image = LevelCaptions[0];
             picPOI.Image = OwPoiImage;
+        }
+
+        /// <summary>
+        /// Serializes the currently displayed dungeon and returns the serialized data. Returns null if a dungeon is not currently displayed.
+        /// </summary>
+        private Cereal SaveCurrentDungeonData() {
+            if (currentMap == dungeonMap) {
+                dungeonMap.MapData.CursorPosition = new Point(cursorX, cursorY);
+                var mapData = dungeonMap.MapData.Serialize();
+                dungeonData[currentDungeonIndex] = mapData;
+
+                return mapData;
+            }
+
+            return null;
         }
 
 
@@ -701,9 +716,7 @@ namespace ZMapper
         #region Saving/Loading
         internal Cereal SaveMap() {
             // If current map is a dungeon, we must serialize it now (normally they are serialized upon map swaps)
-            if (currentMap == dungeonMap) {
-                dungeonData[currentDungeonIndex] = currentMap.MapData.Serialize();
-            }
+            SaveCurrentDungeonData();
 
             Cereal result = new Cereal();
             var maps = Cereal.List();
@@ -725,7 +738,7 @@ namespace ZMapper
             owMap.MapData.Clear();
             dungeonMap.MapData.Clear();
             for (int i = 0; i < dungeonData.Count; i++) dungeonData[i] = null;
-            for (int i = 0; i < dungeonCursorPos.Count; i++) dungeonCursorPos[i] = null;
+            //for (int i = 0; i < dungeonCursorPos.Count; i++) dungeonCursorPos[i] = null;
 
             var maps = data.Array["maps"];
             var items = data.Group["items"];
@@ -800,8 +813,7 @@ namespace ZMapper
                 return currentFileName;
             }
 
-            currentFileName = FileSaver.FileName;
-            return currentFileName;
+            return (currentFileName = filename);
         }
 
 
@@ -855,7 +867,7 @@ namespace ZMapper
         }
 
         private void btnSave_ButtonClick(object sender, EventArgs e) {
-            if (currentFileName == null) {
+            if (string.IsNullOrEmpty(currentFileName)) {
                 DoSaveAs();
             } else {
                 DoSave(currentFileName);

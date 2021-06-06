@@ -1,11 +1,11 @@
 ﻿Now
-- Serialize cursor position
 - Improve dungeon stair numbers
-- Improve mini stamps - still too small and blurry. THEY CAN BE 12x12!
 - Save "Active" settings
+- Option to not accept focus when clicking on client area
 
 Soon
 - Custom icon
+- Goto target--Move cursor to corresponding dungeon staircase, or from OW to marked dungeon
 
 And then
 - HTML help

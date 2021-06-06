@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using FasTrak;
+using System.Drawing;
 
 namespace ZMapper
 {
@@ -11,6 +12,7 @@ namespace ZMapper
         public const int MapHeight = 8;
         readonly ScreenData[,] screens = new ScreenData[16, 8];
         public bool DungeonMap { get; private set; }
+        public Point CursorPosition { get; set; }
 
         public MapData(bool dungeon) {
             this.DungeonMap = dungeon;
@@ -41,6 +43,10 @@ namespace ZMapper
             Cereal mapData = new Cereal();
             var notesData = Cereal.List();
             var poiData = Cereal.List();
+            var cursorData = new Cereal();
+
+            cursorData["x"] = CursorPosition.X;
+            cursorData["y"] = CursorPosition.Y;
 
             byte[] rawMap = new byte[MapWidth * MapHeight * 2];
             int ptr = 0;
@@ -72,16 +78,25 @@ namespace ZMapper
                 }
             }
 
+
             var base64 = Convert.ToBase64String(rawMap);
             mapData["notes"] = notesData;
             mapData["poi"] = poiData;
             mapData["data"] = base64;
+            mapData["cursor"] = cursorData;
 
             return mapData;
         }
         public void Deserialize(Cereal data) {
             // Fresh start
             CreateScreenData();
+
+            var cursor = data.Group["cursor"];
+            if (cursor != null) {
+                CursorPosition = new Point(
+                    cursor.Int["x"] ?? 0,
+                    cursor.Int["y"] ?? 0);
+            }
 
             var rawMap = Convert.FromBase64String(data.String["data"]);
             int ptr = 0;
