@@ -2,8 +2,10 @@
 - Improve dungeon stair numbers
 - Save "Active" settings
 - Option to not accept focus when clicking on client area
+- Option for always on top
 
 Soon
+- Click on dungeon, go to dungeon (if it's the current dungeon, go to OW)
 - Custom icon
 - Goto target--Move cursor to corresponding dungeon staircase, or from OW to marked dungeon
 

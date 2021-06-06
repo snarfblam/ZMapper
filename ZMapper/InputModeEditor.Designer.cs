@@ -43,7 +43,7 @@
             this.radPattern.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radPattern.Name = "radPattern";
             this.radPattern.Size = new System.Drawing.Size(120, 20);
-            this.radPattern.TabIndex = 0;
+            this.radPattern.TabIndex = 3;
             this.radPattern.TabStop = true;
             this.radPattern.Text = "Pattern Match";
             this.radPattern.UseVisualStyleBackColor = true;
@@ -53,7 +53,7 @@
             this.label1.Location = new System.Drawing.Point(41, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(277, 57);
-            this.label1.TabIndex = 5;
+            this.label1.TabIndex = 4;
             this.label1.Text = "An asterisk ( * ) will match any sequence of (zero or more) characters, and a que" +
                 "stion mark ( ? ) will match any one character.";
             // 
@@ -74,7 +74,7 @@
             this.radRegex.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radRegex.Name = "radRegex";
             this.radRegex.Size = new System.Drawing.Size(149, 20);
-            this.radRegex.TabIndex = 1;
+            this.radRegex.TabIndex = 5;
             this.radRegex.Text = "Regular Expression";
             this.radRegex.UseVisualStyleBackColor = true;
             // 
@@ -83,14 +83,14 @@
             this.txtMatchString.Location = new System.Drawing.Point(12, 191);
             this.txtMatchString.Name = "txtMatchString";
             this.txtMatchString.Size = new System.Drawing.Size(317, 23);
-            this.txtMatchString.TabIndex = 2;
+            this.txtMatchString.TabIndex = 0;
             // 
             // btnOK
             // 
             this.btnOK.Location = new System.Drawing.Point(254, 220);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 4;
+            this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -101,7 +101,7 @@
             this.btnCancel.Location = new System.Drawing.Point(173, 220);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 3;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 

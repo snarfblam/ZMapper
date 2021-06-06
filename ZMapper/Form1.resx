@@ -188,17 +188,17 @@
   <data name="toolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIxSURBVDhPfZP9T1JhHMWf/6A/5f5J/dSMgU3EombMIYH2
-        umatG6+C9jbXcstWMwsL09RcBL2wwVVe2mzM6GKgQMBOnIcLc2323c52nvP9nPvc3e2K4yY8cx9HZcTH
-        TzAYVHyBiO73R07yHAhF0G63peiZcUeGLM/9UdWgEgjP6l++fkMoPAtV9c3f9QVRr9dRq9Uw9/iJzLgj
-        Q5Ydoy7ErdvebPxTEpVKFYXCd2xsbslyb+iZ5QsFyZBlx6gLMTWlKndUr65t76DZbKJYLCIajWLh6YIU
-        PTPuyJBlx6h35+qNm9PvVtdQKpWwEoshkUhC0zQpembckSFr1ISYvHIdlNcfQrVaRSqVQiajIbayionJ
-        a3GKPp3OyB2ZXocSlzyXkc3lkcsX5Ctmczl5HvdMxI07BD0z7v5Ihj4PdoXT5Ua6cyPFj7W7+0N657i7
-        /wB6ZvwO9XoDGW27y3S6wjHmRE96uYxyRzvZHJ49f4GLDmecoueN3JFxuT39jnGHEOdHHdPR5Tc4PKx1
-        wH35tRPJz1K8jRl3ZMgate5Y7XblwqhDjy6/xd7eTzQaDVQPDrD/u4Jfell6ZtyRIcuOLNvt9hNWmy37
-        8NEc3q9vYnHpFRZfLsnXbbVaUvTMuCNDlh35AI7FalVsZ+36zL0HGB45h8Eh6/yY04UPWx+xtr6BoeER
-        mXFHhiw7Rr07FotFGTCZ9dPmM/JnMpkH8brzuhQ9M+7IkOX5v3NqwISjMuJ/Roi/UWFXtWhCMRQAAAAA
-        SUVORK5CYII=
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIvSURBVDhPfZP9T1JhHMWf/6A/hT+pnxo5sYlYty2dQwJ6
+        X9OtmxII2ttcyy2dzSwsTFNzEfTCBld5abMxo4uBchHY6Z6HC3Nt9t3Odp7z/Zz73N3titMmPP0IJ2XF
+        p08wGLSpakQPBCJneX4QiqDVaknRM+OODFmeu6OqZjk8o3/99h2h8AxUdXLu/mQQhmGgVqth9tlzmXFH
+        hiw7Vl2I8fGJbPxzEpVKFYXCD2xubctyZ+iZ5QsFyZBlx6oLMTam2u6pqq7t7KLRaKBYLCIajWL+xbwU
+        PTPuyJBlx6q35+adu1Pv19ZRKpWwGoshkUhC0zQpembckSFr1YS4duM2qIlACNVqFalUCpmMhtjqGvz+
+        W3GKPp3OyB2ZTocSV33Xkc3lkcsX5Ctmczl5HvX549Ydgp4Zd8eSoc+DXeH2eJE2b6T4sfb2fkrvHvV2
+        H0DPjN/BMOrIaDttxuyK4RE3OtLLZZRN7WZzWFh8iaEhd5yi543ckfF4fd2OdYcQl68MT0VX3uLoqGaC
+        B/JrJ5JfpHgbM+7IkLVq7XEqik1RFD268g77+79Qr9dRPTzEwZ8Kfutl6ZlxR4YsO7JsHs44Xa7sk6ez
+        +LCxhaXl11h6tSxft9lsStEz444MWXbkAzgOp9Pmuqjo0w8fY2DwEvr6nXMjbg8+bn/C+sYm+gcGZcYd
+        GbLsWPX2OBwOm91u18/3XpA/U09vH96Yr0vRM+OODFme/zvn7D04KSv+Z4T4C7neV23j2NNZAAAAAElF
+        TkSuQmCC
 </value>
   </data>
   <metadata name="FileOpener.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

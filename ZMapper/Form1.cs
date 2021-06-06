@@ -84,6 +84,13 @@ namespace ZMapper
             picCaption.Image = LevelCaptions[0];
         }
 
+        protected override CreateParams CreateParams {
+            get {
+                var result = base.CreateParams ;
+                //result.ExStyle |= 0x08000000;
+                return result;
+            }
+        }
         #region Input Enabled Management
 
         enum InputMode
@@ -876,6 +883,21 @@ namespace ZMapper
 
         #endregion
 
+        //private const int WM_MOUSEACTIVATE = 0x0021;
+        //const int MA_NOACTIVATE = 0x0003;
+
+        //protected override void WndProc(ref Message m) {
+        //    if (m.Msg == WM_MOUSEACTIVATE) {
+        //        m.Result = (IntPtr)MA_NOACTIVATE;
+        //        return;
+        //    }
+        //    base.WndProc(ref m);
+        //}
+
+        private void btnNoFocus_Click(object sender, EventArgs e) {
+            bool state = (btnNoFocus.Checked = !btnNoFocus.Checked);
+            Win32.SetExStyle(this.Handle, Win32.WS_EX_NOACTIVATE, state);
+        }
 
     }
 

@@ -21,13 +21,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.CursorTimer = new System.Windows.Forms.Timer(this.components);
             this.MainToolbar = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.btnInputAlways = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnInputCaption = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnInputClass = new System.Windows.Forms.ToolStripMenuItem();
-            this.FileOpener = new System.Windows.Forms.OpenFileDialog();
-            this.FileSaver = new System.Windows.Forms.SaveFileDialog();
-            this.picCaption = new System.Windows.Forms.PictureBox();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnOpen = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripSplitButton();
@@ -35,6 +28,16 @@
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.inputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.btnInputAlways = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnInputCaption = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnInputClass = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnNoFocus = new System.Windows.Forms.ToolStripMenuItem();
+            this.FileOpener = new System.Windows.Forms.OpenFileDialog();
+            this.FileSaver = new System.Windows.Forms.SaveFileDialog();
+            this.picCaption = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.minimap = new ZMapper.MinimapPanel();
             this.pnlMap = new ZMapper.BufferedPanel();
             this.itemPanel1 = new ZMapper.ItemPanel();
@@ -77,61 +80,6 @@
             this.MainToolbar.Size = new System.Drawing.Size(734, 25);
             this.MainToolbar.TabIndex = 7;
             this.MainToolbar.Text = "toolStrip1";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnInputAlways,
-            this.btnInputCaption,
-            this.btnInputClass});
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 22);
-            this.toolStripButton2.Text = "Settings";
-            // 
-            // btnInputAlways
-            // 
-            this.btnInputAlways.Checked = true;
-            this.btnInputAlways.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.btnInputAlways.Name = "btnInputAlways";
-            this.btnInputAlways.Size = new System.Drawing.Size(237, 22);
-            this.btnInputAlways.Text = "Input Always Enabled";
-            this.btnInputAlways.Click += new System.EventHandler(this.btnInputAlways_Click);
-            // 
-            // btnInputCaption
-            // 
-            this.btnInputCaption.Name = "btnInputCaption";
-            this.btnInputCaption.Size = new System.Drawing.Size(237, 22);
-            this.btnInputCaption.Text = "Enabled For Window Caption...";
-            this.btnInputCaption.Click += new System.EventHandler(this.btnInputCaption_Click);
-            // 
-            // btnInputClass
-            // 
-            this.btnInputClass.Name = "btnInputClass";
-            this.btnInputClass.Size = new System.Drawing.Size(237, 22);
-            this.btnInputClass.Text = "Enabled For Window Class...";
-            this.btnInputClass.Click += new System.EventHandler(this.btnInputClass_Click);
-            // 
-            // FileOpener
-            // 
-            this.FileOpener.Filter = "JSON file (*.json)|*.json|All Files (*.*)|*.*";
-            this.FileOpener.Title = "Open Tracker Data";
-            // 
-            // FileSaver
-            // 
-            this.FileSaver.Filter = "JSON file (*.json)|*.json|All Files (*.*)|*.*";
-            this.FileSaver.Title = "Save Tracker Data";
-            // 
-            // picCaption
-            // 
-            this.picCaption.Location = new System.Drawing.Point(35, 31);
-            this.picCaption.Name = "picCaption";
-            this.picCaption.Size = new System.Drawing.Size(320, 24);
-            this.picCaption.TabIndex = 8;
-            this.picCaption.TabStop = false;
             // 
             // btnNew
             // 
@@ -191,14 +139,93 @@
             // inputToolStripMenuItem
             // 
             this.inputToolStripMenuItem.Name = "inputToolStripMenuItem";
-            this.inputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.inputToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.inputToolStripMenuItem.Text = "Input";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnInputAlways,
+            this.btnInputCaption,
+            this.btnInputClass,
+            this.toolStripSeparator1,
+            this.btnNoFocus});
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 22);
+            this.toolStripButton2.Text = "Settings";
+            // 
+            // btnInputAlways
+            // 
+            this.btnInputAlways.Checked = true;
+            this.btnInputAlways.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.btnInputAlways.Name = "btnInputAlways";
+            this.btnInputAlways.Size = new System.Drawing.Size(237, 22);
+            this.btnInputAlways.Text = "Input Always Enabled";
+            this.btnInputAlways.Click += new System.EventHandler(this.btnInputAlways_Click);
+            // 
+            // btnInputCaption
+            // 
+            this.btnInputCaption.Name = "btnInputCaption";
+            this.btnInputCaption.Size = new System.Drawing.Size(237, 22);
+            this.btnInputCaption.Text = "Enabled For Window Caption...";
+            this.btnInputCaption.Click += new System.EventHandler(this.btnInputCaption_Click);
+            // 
+            // btnInputClass
+            // 
+            this.btnInputClass.Name = "btnInputClass";
+            this.btnInputClass.Size = new System.Drawing.Size(237, 22);
+            this.btnInputClass.Text = "Enabled For Window Class...";
+            this.btnInputClass.Click += new System.EventHandler(this.btnInputClass_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(234, 6);
+            // 
+            // btnNoFocus
+            // 
+            this.btnNoFocus.Name = "btnNoFocus";
+            this.btnNoFocus.Size = new System.Drawing.Size(237, 22);
+            this.btnNoFocus.Text = "No Focus On Click";
+            this.btnNoFocus.ToolTipText = "Keeps this program from stealing focus\r\nfrom other software when clicked.";
+            this.btnNoFocus.Click += new System.EventHandler(this.btnNoFocus_Click);
+            // 
+            // FileOpener
+            // 
+            this.FileOpener.Filter = "JSON file (*.json)|*.json|All Files (*.*)|*.*";
+            this.FileOpener.Title = "Open Tracker Data";
+            // 
+            // FileSaver
+            // 
+            this.FileSaver.Filter = "JSON file (*.json)|*.json|All Files (*.*)|*.*";
+            this.FileSaver.Title = "Save Tracker Data";
+            // 
+            // picCaption
+            // 
+            this.picCaption.Location = new System.Drawing.Point(35, 31);
+            this.picCaption.Name = "picCaption";
+            this.picCaption.Size = new System.Drawing.Size(320, 24);
+            this.picCaption.TabIndex = 8;
+            this.picCaption.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(398, 374);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // minimap
             // 
@@ -241,6 +268,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(734, 409);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.picCaption);
             this.Controls.Add(this.MainToolbar);
             this.Controls.Add(this.minimap);
@@ -282,6 +310,9 @@
         private System.Windows.Forms.PictureBox picCaption;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.PictureBox picPOI;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem btnNoFocus;
     }
 }
 
