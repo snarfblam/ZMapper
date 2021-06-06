@@ -86,8 +86,40 @@ namespace ZMapper
 
             GenerateAllDungeonThumbs();
             SetInputMode(InputMode.AlwaysActive, null); // Todo: Persist!
-
             picCaption.Image = LevelCaptions[0];
+
+            LoadSettings();
+
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e) {
+            base.OnFormClosing(e);
+
+            StoreSettings();
+        }
+
+        private void StoreSettings() {
+            Program.AppSettings.CaptionRegex = Program.AppSettings.ClassRegex = null;
+            
+            if (inputMode == InputMode.ActiveByCaption) {
+                Program.AppSettings.CaptionRegex = this.inputRegexString;
+            } else if (inputMode == InputMode.ActiveByCaption) {
+                Program.AppSettings.ClassRegex = this.inputRegexString;
+            }
+            Program.AppSettings.Topmost = btnAlwaysOnTop.Checked;
+            Program.AppSettings.NoFocus = btnNoFocus.Checked;
+        }
+
+        private void LoadSettings() {
+            if (Program.AppSettings.CaptionRegex != null) {
+                SetInputMode(InputMode.ActiveByCaption, Program.AppSettings.CaptionRegex);
+            } else if (Program.AppSettings.ClassRegex != null) {
+                SetInputMode(InputMode.ActiveByClass, Program.AppSettings.ClassRegex);
+            } else {
+                SetInputMode(InputMode.AlwaysActive, null);
+            }
+
+            SetTopmost(Program.AppSettings.Topmost);
+            SetNoFocus(Program.AppSettings.NoFocus);
         }
 
         protected override CreateParams CreateParams {
@@ -112,6 +144,10 @@ namespace ZMapper
         Regex inputRegex = null;
 
         void SetInputMode(InputMode mode, string regex) {
+            btnInputAlways.Checked = mode == InputMode.AlwaysActive;
+            btnInputCaption.Checked = mode == InputMode.ActiveByCaption;
+            btnInputClass.Checked = mode == InputMode.ActiveByClass;
+
             this.inputMode = mode;
             this.inputRegexString = regex;
             if (regex != null) inputRegex = new Regex(regex);
@@ -164,13 +200,13 @@ namespace ZMapper
         }
 
         private void btnInputCaption_Click(object sender, EventArgs e) {
-            if (InputModeEditor.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+            if (InputModeEditor.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
                 SetInputMode(InputMode.ActiveByCaption, InputModeEditor.MatchRegex);
             }
         }
 
         private void btnInputClass_Click(object sender, EventArgs e) {
-            if (InputModeEditor.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+            if (InputModeEditor.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
                 SetInputMode(InputMode.ActiveByClass, InputModeEditor.MatchRegex);
             }
         }
@@ -914,13 +950,21 @@ namespace ZMapper
         //}
 
         private void btnNoFocus_Click(object sender, EventArgs e) {
-            bool state = (btnNoFocus.Checked = !btnNoFocus.Checked);
-            Win32.SetExStyle(this.Handle, Win32.WS_EX_NOACTIVATE, state);
+            SetNoFocus(!btnNoFocus.Checked);
         }
 
         private void btnAlwaysOnTop_Click(object sender, EventArgs e) {
-            bool state = (btnAlwaysOnTop.Checked = !btnAlwaysOnTop.Checked);
-            this.TopMost = state;
+            SetTopmost(!btnAlwaysOnTop.Checked);
+        }
+
+        void SetTopmost(bool topmost) {
+            btnAlwaysOnTop.Checked = topmost;
+            this.TopMost = topmost;
+        }
+
+        void SetNoFocus(bool noFocus) {
+            btnNoFocus.Checked = noFocus;
+            Win32.SetExStyle(this.Handle, Win32.WS_EX_NOACTIVATE, noFocus);
         }
 
         private void minimap_ThumbClicked(object sender, IndexEventArgs e) {

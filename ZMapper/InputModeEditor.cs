@@ -18,8 +18,10 @@ namespace ZMapper
 
         static InputModeEditor Instance;
 
-        public new static DialogResult ShowDialog() {
+        public new static DialogResult ShowDialog(Form owner = null) {
             if (Instance == null || Instance.IsDisposed) Instance = new InputModeEditor();
+            if (owner != null) Instance.TopMost = owner.TopMost;
+
             var result = ((Form)Instance).ShowDialog();
             if (result == DialogResult.Cancel) {
                 MatchRegex = null;

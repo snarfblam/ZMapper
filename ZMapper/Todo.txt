@@ -1,7 +1,4 @@
-﻿Now
-- Save settings
-
-Soon
+﻿Soon
 - Goto target--Move cursor to corresponding dungeon staircase, or from OW to marked dungeon
 
 And then
