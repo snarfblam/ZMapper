@@ -11,6 +11,9 @@ namespace ZMapper
 {
     public partial class Form1 : Form
     {
+        static Icon ZMapIcon = Resources.ZMap;
+        static Icon ZMapRedIcon = Resources.ZMapRed;
+        const string BaseCaption = "ZMapper";
         //const int TileSize = 24;
 
         //readonly Bitmap srcVisited = Resources.visited;
@@ -54,6 +57,8 @@ namespace ZMapper
         public Form1() {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
+            this.Icon = ZMapRedIcon;
+            this.Text = BaseCaption;
 
             MainToolbar.ForeColor = SystemColors.ControlText;
 
@@ -139,7 +144,8 @@ namespace ZMapper
 
             inputEnabled = false;
             this.inputs.UnmapKeys();
-            this.Text = "ZMapper [Inactive]";
+            //this.Text = "ZMapper [Inactive]";
+            this.Icon = ZMapIcon;
         }
 
         private void EnableInput() {
@@ -147,7 +153,9 @@ namespace ZMapper
 
             inputEnabled = true;
             this.inputs.MapKeys();
-            this.Text = "ZMapper [Active]";
+            //this.Text = "ZMapper [Active]";
+            this.Icon = ZMapRedIcon;
+
         }
 
 
@@ -778,8 +786,18 @@ namespace ZMapper
                 }
                 GenerateAllDungeonThumbs();
 
-                currentFileName = null;
+                SetCurrentFilename(null);
             }
+        }
+
+        string SetCurrentFilename(string path) {
+            this.currentFileName = path;
+            if (!string.IsNullOrEmpty(path)) {
+                var mapName = Path.GetFileNameWithoutExtension(path);
+                this.Text = mapName + " - " + BaseCaption;
+            }
+
+            return path;
         }
         
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -821,7 +839,7 @@ namespace ZMapper
                 return currentFileName;
             }
 
-            return (currentFileName = filename);
+            return SetCurrentFilename(filename);
         }
 
 
@@ -869,7 +887,7 @@ namespace ZMapper
                         ClearEntireTracker(); // Sorry!
                     }
 
-                    currentFileName = FileOpener.FileName;
+                    SetCurrentFilename(FileOpener.FileName);
                 }
             }
         }

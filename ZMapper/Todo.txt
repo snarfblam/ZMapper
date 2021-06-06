@@ -2,8 +2,6 @@
 - Save settings
 
 Soon
-- Click on dungeon, go to dungeon (if it's the current dungeon, go to OW)
-- Custom icon
 - Goto target--Move cursor to corresponding dungeon staircase, or from OW to marked dungeon
 
 And then

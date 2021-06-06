@@ -329,5 +329,25 @@ namespace ZMapper.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon ZMap {
+            get {
+                object obj = ResourceManager.GetObject("ZMap", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon ZMapRed {
+            get {
+                object obj = ResourceManager.GetObject("ZMapRed", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }
