@@ -35,16 +35,16 @@
             this.btnNoFocus = new System.Windows.Forms.ToolStripMenuItem();
             this.FileOpener = new System.Windows.Forms.OpenFileDialog();
             this.FileSaver = new System.Windows.Forms.SaveFileDialog();
+            this.picCaption = new System.Windows.Forms.PictureBox();
             this.minimap = new ZMapper.MinimapPanel();
             this.pnlMap = new ZMapper.BufferedPanel();
             this.itemPanel1 = new ZMapper.ItemPanel();
             this.picPOI = new System.Windows.Forms.PictureBox();
-            this.picCaption = new System.Windows.Forms.PictureBox();
             toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.MainToolbar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCaption)).BeginInit();
             this.itemPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPOI)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCaption)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripButton1
@@ -117,7 +117,7 @@
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -202,6 +202,14 @@
             this.FileSaver.Filter = "JSON file (*.json)|*.json|All Files (*.*)|*.*";
             this.FileSaver.Title = "Save Tracker Data";
             // 
+            // picCaption
+            // 
+            this.picCaption.Location = new System.Drawing.Point(35, 31);
+            this.picCaption.Name = "picCaption";
+            this.picCaption.Size = new System.Drawing.Size(320, 24);
+            this.picCaption.TabIndex = 8;
+            this.picCaption.TabStop = false;
+            // 
             // minimap
             // 
             this.minimap.Location = new System.Drawing.Point(418, 58);
@@ -222,7 +230,7 @@
             // itemPanel1
             // 
             this.itemPanel1.Controls.Add(this.picPOI);
-            this.itemPanel1.Location = new System.Drawing.Point(35, 241);
+            this.itemPanel1.Location = new System.Drawing.Point(35, 236);
             this.itemPanel1.Name = "itemPanel1";
             this.itemPanel1.Size = new System.Drawing.Size(333, 180);
             this.itemPanel1.TabIndex = 1;
@@ -237,14 +245,6 @@
             this.picPOI.TabIndex = 9;
             this.picPOI.TabStop = false;
             this.picPOI.Visible = false;
-            // 
-            // picCaption
-            // 
-            this.picCaption.Location = new System.Drawing.Point(35, 31);
-            this.picCaption.Name = "picCaption";
-            this.picCaption.Size = new System.Drawing.Size(320, 24);
-            this.picCaption.TabIndex = 8;
-            this.picCaption.TabStop = false;
             // 
             // Form1
             // 
@@ -262,9 +262,9 @@
             this.Text = "ZMapper";
             this.MainToolbar.ResumeLayout(false);
             this.MainToolbar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCaption)).EndInit();
             this.itemPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picPOI)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCaption)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

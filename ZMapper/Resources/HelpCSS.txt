@@ -46,3 +46,8 @@ img.help {
 .help-home {
     line-height: 24px;
 }
+
+code {
+    font-family: Console, "Courier New", monospace;
+    background-color: #EEEEEE;
+}

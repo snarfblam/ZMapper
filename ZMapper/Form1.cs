@@ -996,6 +996,13 @@ namespace ZMapper
             HTMLForm.ShowAbout(this);
         }
 
+        protected override void OnKeyDown(KeyEventArgs e) {
+            base.OnKeyDown(e);
+
+            if (e.KeyCode == Keys.F1 && e.Modifiers == Keys.None) {
+                HTMLForm.ShowAbout(this);
+            }
+        }
 
     }
 

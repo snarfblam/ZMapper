@@ -10,6 +10,6 @@
 <h4>Always On Top</h4>
 <p>This setting causes ZMapper to always remain in front of all other applications.</p>
 <h4>No Focus On Click</h4>
-<p>Enabling this option prevents ZMapper from stealing focus from other applications. This may be helpful if your emulator does something such as pausing or muting audio when it loses focus.</p>
+<p>Enabling this option prevents ZMapper from stealing focus from other applications. This may be helpful if your emulator does something such as pausing, ignoring input, or muting audio when it loses focus.</p>
 <p>&nbsp;</p>
 </body></html>
