@@ -88,6 +88,8 @@ namespace ZMapper
             SetInputMode(InputMode.AlwaysActive, null); // Todo: Persist!
             picCaption.Image = LevelCaptions[0];
 
+            //btnAbout.ToolTipText = Program.InsertVersion(btnAbout.ToolTipText);
+            btnHelp.ToolTipText = Program.InsertVersion("Help - ZMapper #version");
             LoadSettings();
 
         }
@@ -981,6 +983,19 @@ namespace ZMapper
                 EnterDungeonMode(e.Index);
             }
         }
+
+        //private void btnAbout_Click(object sender, EventArgs e) {
+        //    HTMLForm.ShowAbout(this);
+        //}
+
+        //private void btnHelpInput_Click(object sender, EventArgs e) {
+        //    HTMLForm.ShowInput(this);
+        //}
+
+        private void btnHelp_Click(object sender, EventArgs e) {
+            HTMLForm.ShowAbout(this);
+        }
+
 
     }
 

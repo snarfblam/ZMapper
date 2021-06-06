@@ -1,0 +1,48 @@
+html {
+    margin: 0;
+    padding: 10px;
+}
+
+body {
+    margin: 0px;
+    
+}
+
+h1, h2, h3 {
+    margin: 0;
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, p {
+    margin-left: 0px;
+    margin-bottom: 0.5em;
+    margin-top: 0;
+    indent: 0;
+}
+
+ul, ol {
+    margin-top: 0;
+}
+
+.img-block {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+blockquote {
+    background-color: #EEEEEE;
+    margin-left: 1em;
+    padding-left: .5em;
+    margin-right: 0;
+    border-left: 2px solid #ABABAB;
+    max-width: 800px;
+}
+
+img.help {
+    vertical-align: bottom;
+}
+
+.help-home {
+    line-height: 24px;
+}

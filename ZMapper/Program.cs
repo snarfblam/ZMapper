@@ -13,6 +13,15 @@ namespace ZMapper
         internal const string SettingsFilename = "settings.json";
         internal static readonly string ZMapperData = Path.Combine(AppData, AppDirName);
         internal static readonly string SettingsPath = Path.Combine(ZMapperData, SettingsFilename);
+        internal static readonly Version Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+        internal static string VersionString = FormatVersion(Version);
+
+        private static string FormatVersion(System.Version version) {
+            string v = version.Major.ToString() + "." + version.Minor.ToString();
+            if (version.Revision != 0) v += "." + version.Revision.ToString();
+            if (version.Build != 0) v += "." + version.Build.ToString();
+            return v;
+        }
 
         internal static Settings AppSettings;
 
@@ -54,6 +63,10 @@ namespace ZMapper
             }
 
 
+        }
+
+        internal static string InsertVersion(string text) {
+            return text.Replace("#version", VersionString);
         }
 
         private static void ShowSettingsError(string operation, Exception ex) {

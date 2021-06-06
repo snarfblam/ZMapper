@@ -1,0 +1,4 @@
+<html><body>
+<h2>Not Found</h2>
+<p>The specified help topic was not found.</p>
+</body></html>

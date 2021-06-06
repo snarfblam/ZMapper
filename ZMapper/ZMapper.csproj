@@ -59,6 +59,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalInputs.cs" />
+    <Compile Include="HTMLForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HTMLForm.Designer.cs">
+      <DependentUpon>HTMLForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HtmlRenderer.WinForms\Adapters\BrushAdapter.cs" />
     <Compile Include="HtmlRenderer.WinForms\Adapters\ContextMenuAdapter.cs" />
     <Compile Include="HtmlRenderer.WinForms\Adapters\ControlAdapter.cs" />
@@ -181,6 +187,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HTMLForm.resx">
+      <DependentUpon>HTMLForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputModeEditor.resx">
       <DependentUpon>InputModeEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,6 +305,14 @@
   <ItemGroup>
     <Content Include="HtmlRenderer\Core\Utils\ImageError.png" />
     <Content Include="HtmlRenderer\Core\Utils\ImageLoad.png" />
+    <None Include="Resources\Help.png" />
+    <None Include="Resources\HelpOptions.txt" />
+    <None Include="Resources\HelpLicense.txt" />
+    <None Include="Resources\hjoet5yi.bmp" />
+    <None Include="Resources\HelpInput.txt" />
+    <None Include="Resources\HelpNotFound.txt" />
+    <None Include="Resources\HelpCSS.txt" />
+    <None Include="Resources\HelpAbout.txt" />
     <None Include="Resources\HTMLRendererLicense.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

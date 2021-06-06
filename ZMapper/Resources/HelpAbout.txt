@@ -1,0 +1,12 @@
+<html><body>
+<h2>ZMapper #version</h2>
+<p>This software is free to use, distribute, and modify. See <a href="page://license">License Information</a> for more information.</p>
+<p>Source is available on <a href="https://github.com/snarfblam/ZMapper/">GitHub</a>.</p>
+<p>&nbsp;</p>
+<h3>Help Topics</h3>
+<ul>
+<li><a href="page://input">Tracker Input</a></li>
+<li><a href="page://options">Options</a></li>
+<li><a href="page://license">License Information</a></li>
+</ul>
+</body></html>
