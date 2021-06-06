@@ -26,6 +26,7 @@ namespace ZMapper
         MapRenderer dungeonMap = new MapRenderer(true);
 
         MapRenderer currentMap;
+        public bool DungeonMode { get { return currentMap == dungeonMap; } }
         GlobalInputs inputs = new GlobalInputs();
 
         Point currentCursor { get { return currentMap.MapData.CursorPosition; } set { currentMap.MapData.CursorPosition = value; } }
@@ -897,6 +898,19 @@ namespace ZMapper
         private void btnNoFocus_Click(object sender, EventArgs e) {
             bool state = (btnNoFocus.Checked = !btnNoFocus.Checked);
             Win32.SetExStyle(this.Handle, Win32.WS_EX_NOACTIVATE, state);
+        }
+
+        private void btnAlwaysOnTop_Click(object sender, EventArgs e) {
+            bool state = (btnAlwaysOnTop.Checked = !btnAlwaysOnTop.Checked);
+            this.TopMost = state;
+        }
+
+        private void minimap_ThumbClicked(object sender, IndexEventArgs e) {
+            if (DungeonMode && e.Index == currentDungeonIndex) {
+                ExitDungeonMode();
+            } else {
+                EnterDungeonMode(e.Index);
+            }
         }
 
     }

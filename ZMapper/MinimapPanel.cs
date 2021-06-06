@@ -21,6 +21,7 @@ namespace ZMapper
         static readonly Rectangle ThumbSource = new Rectangle(96, 0, 192, 192);
 
         List<Rectangle> ThumbPositions = new List<Rectangle>();
+        public event EventHandler<IndexEventArgs> ThumbClicked;
 
         public MinimapPanel() {
             this.gfx = Graphics.FromImage(image);
@@ -55,5 +56,26 @@ namespace ZMapper
             gfx.DrawImage(image, thumbBounds, ThumbSource, GraphicsUnit.Pixel);
             this.Invalidate(thumbBounds);
         }
+
+        protected override void OnMouseDown(System.Windows.Forms.MouseEventArgs e) {
+            base.OnMouseDoubleClick(e);
+
+            for (int i = 0; i < ThumbPositions.Count; i++) {
+                if (ThumbPositions[i].Contains(e.Location)) {
+                    ThumbClicked.Raise(this, new IndexEventArgs(i));
+
+                    return;
+                }
+            }
+        }
+    }
+
+    class IndexEventArgs : EventArgs
+    {
+        public IndexEventArgs(int value) {
+            this.Index = value;
+        }
+
+        public int Index { get; private set; }
     }
 }

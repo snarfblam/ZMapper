@@ -8,6 +8,9 @@ namespace ZMapper
 {
     class MapData
     {
+        const int defaultCursorX = 7;
+        const int defaultCursorY = 7;
+
         public const int MapWidth = 16;
         public const int MapHeight = 8;
         readonly ScreenData[,] screens = new ScreenData[16, 8];
@@ -33,6 +36,8 @@ namespace ZMapper
                     }
                 }
             }
+
+            CursorPosition = new Point(defaultCursorX, defaultCursorY);
         }
 
         public ScreenData this[int x, int y] {

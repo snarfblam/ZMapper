@@ -33,11 +33,11 @@
             this.btnInputCaption = new System.Windows.Forms.ToolStripMenuItem();
             this.btnInputClass = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAlwaysOnTop = new System.Windows.Forms.ToolStripMenuItem();
             this.btnNoFocus = new System.Windows.Forms.ToolStripMenuItem();
             this.FileOpener = new System.Windows.Forms.OpenFileDialog();
             this.FileSaver = new System.Windows.Forms.SaveFileDialog();
             this.picCaption = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.minimap = new ZMapper.MinimapPanel();
             this.pnlMap = new ZMapper.BufferedPanel();
             this.itemPanel1 = new ZMapper.ItemPanel();
@@ -157,6 +157,7 @@
             this.btnInputCaption,
             this.btnInputClass,
             this.toolStripSeparator1,
+            this.btnAlwaysOnTop,
             this.btnNoFocus});
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -192,6 +193,13 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(234, 6);
             // 
+            // btnAlwaysOnTop
+            // 
+            this.btnAlwaysOnTop.Name = "btnAlwaysOnTop";
+            this.btnAlwaysOnTop.Size = new System.Drawing.Size(237, 22);
+            this.btnAlwaysOnTop.Text = "Always On Top";
+            this.btnAlwaysOnTop.Click += new System.EventHandler(this.btnAlwaysOnTop_Click);
+            // 
             // btnNoFocus
             // 
             this.btnNoFocus.Name = "btnNoFocus";
@@ -218,21 +226,13 @@
             this.picCaption.TabIndex = 8;
             this.picCaption.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(398, 374);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // minimap
             // 
             this.minimap.Location = new System.Drawing.Point(418, 58);
             this.minimap.Name = "minimap";
             this.minimap.Size = new System.Drawing.Size(304, 304);
             this.minimap.TabIndex = 6;
+            this.minimap.ThumbClicked += new System.EventHandler<ZMapper.IndexEventArgs>(this.minimap_ThumbClicked);
             // 
             // pnlMap
             // 
@@ -268,7 +268,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(734, 409);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.picCaption);
             this.Controls.Add(this.MainToolbar);
             this.Controls.Add(this.minimap);
@@ -310,9 +309,9 @@
         private System.Windows.Forms.PictureBox picCaption;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.PictureBox picPOI;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem btnNoFocus;
+        private System.Windows.Forms.ToolStripMenuItem btnAlwaysOnTop;
     }
 }
 
