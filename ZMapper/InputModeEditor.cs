@@ -18,9 +18,10 @@ namespace ZMapper
 
         static InputModeEditor Instance;
 
-        public new static DialogResult ShowDialog(Form owner = null) {
+        public new static DialogResult ShowDialog(Form owner = null, string currentInput = "") {
             if (Instance == null || Instance.IsDisposed) Instance = new InputModeEditor();
             if (owner != null) Instance.TopMost = owner.TopMost;
+            Instance.CurrentInputSummaryText = currentInput;
 
             var result = ((Form)Instance).ShowDialog();
             if (result == DialogResult.Cancel) {
@@ -54,6 +55,19 @@ namespace ZMapper
 
         public static string PatternToRegex(string pattern) {
             return "^" + Regex.Escape(pattern).Replace("\\?", ".").Replace("\\*", ".*") + "$";
+        }
+
+        string _CurrentInputSummaryText = null;
+        public string CurrentInputSummaryText {
+            get { return _CurrentInputSummaryText; }
+            set {
+                _CurrentInputSummaryText = value;
+                if (string.IsNullOrEmpty(value)) {
+                    lblCurrent.Text = "";
+                } else {
+                    lblCurrent.Text = "Current input mode: " + value;
+                }
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e) {

@@ -199,14 +199,21 @@ namespace ZMapper
             SetInputMode(InputMode.AlwaysActive, null);
         }
 
+        private string GetCurrentInputString() {
+            if (inputMode == InputMode.AlwaysActive) return "Always active";
+            if (inputMode == InputMode.ActiveByCaption) return "Caption matches regex " + inputRegexString;
+            if (inputMode == InputMode.ActiveByClass) return "Window class matches regex " + inputRegexString;
+            return "Other method";
+        }
+
         private void btnInputCaption_Click(object sender, EventArgs e) {
-            if (InputModeEditor.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
+            if (InputModeEditor.ShowDialog(this, GetCurrentInputString()) == System.Windows.Forms.DialogResult.OK) {
                 SetInputMode(InputMode.ActiveByCaption, InputModeEditor.MatchRegex);
             }
         }
 
         private void btnInputClass_Click(object sender, EventArgs e) {
-            if (InputModeEditor.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
+            if (InputModeEditor.ShowDialog(this, GetCurrentInputString()) == System.Windows.Forms.DialogResult.OK) {
                 SetInputMode(InputMode.ActiveByClass, InputModeEditor.MatchRegex);
             }
         }

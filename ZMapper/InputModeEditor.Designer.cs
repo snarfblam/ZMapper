@@ -32,6 +32,7 @@
             this.txtMatchString = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lblCurrent = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // radPattern
@@ -80,14 +81,14 @@
             // 
             // txtMatchString
             // 
-            this.txtMatchString.Location = new System.Drawing.Point(12, 191);
+            this.txtMatchString.Location = new System.Drawing.Point(12, 226);
             this.txtMatchString.Name = "txtMatchString";
             this.txtMatchString.Size = new System.Drawing.Size(317, 23);
             this.txtMatchString.TabIndex = 0;
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(254, 220);
+            this.btnOK.Location = new System.Drawing.Point(254, 255);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 1;
@@ -98,12 +99,19 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(173, 220);
+            this.btnCancel.Location = new System.Drawing.Point(173, 255);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // lblCurrent
+            // 
+            this.lblCurrent.Location = new System.Drawing.Point(13, 188);
+            this.lblCurrent.Name = "lblCurrent";
+            this.lblCurrent.Size = new System.Drawing.Size(316, 35);
+            this.lblCurrent.TabIndex = 7;
             // 
             // InputModeEditor
             // 
@@ -111,7 +119,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(341, 251);
+            this.ClientSize = new System.Drawing.Size(341, 290);
+            this.Controls.Add(this.lblCurrent);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtMatchString);
@@ -141,5 +150,6 @@
         private System.Windows.Forms.TextBox txtMatchString;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblCurrent;
     }
 }
