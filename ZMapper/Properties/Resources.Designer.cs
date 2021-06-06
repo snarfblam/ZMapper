@@ -191,6 +191,26 @@ namespace ZMapper.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copyright (c) 2009, José Manuel Menéndez Poo
+        ///Copyright (c) 2013, Arthur Teplitzki
+        ///All rights reserved.
+        ///
+        ///Redistribution and use in source and binary forms, with or without modification,
+        ///are permitted provided that the following conditions are met:
+        ///
+        ///  Redistributions of source code must retain the above copyright notice, this
+        ///  list of conditions and the following disclaimer.
+        ///
+        ///  Redistributions in binary form must reproduce the above copyright notice, this
+        ///  list of conditions and the following dis [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string HTMLRendererLicense {
+            get {
+                return ResourceManager.GetString("HTMLRendererLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] ItemLayout {
