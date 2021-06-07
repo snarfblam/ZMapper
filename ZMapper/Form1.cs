@@ -59,6 +59,7 @@ namespace ZMapper
             InitializeComponent();
             this.Icon = ZMapRedIcon;
             this.Text = BaseCaption;
+            menuStrip1.ForeColor = Color.White;
 
             MainToolbar.ForeColor = SystemColors.ControlText;
 
@@ -845,7 +846,7 @@ namespace ZMapper
             return path;
         }
         
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void btnSaveAs_Click(object sender, EventArgs e) {
             DoSaveAs();
         }
 
@@ -1002,6 +1003,10 @@ namespace ZMapper
             if (e.KeyCode == Keys.F1 && e.Modifiers == Keys.None) {
                 HTMLForm.ShowAbout(this);
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e) {
+
         }
 
     }

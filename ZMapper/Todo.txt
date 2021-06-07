@@ -1,6 +1,7 @@
 ﻿Soon
+- outline style cursor?
+- Titles on help pages - derp
 - Indicators for POI input
 - Goto target--Move cursor to corresponding dungeon staircase, or from OW to marked dungeon
-
-And then
 - Configurable input
+- Update readme text, Screenshot in readme
