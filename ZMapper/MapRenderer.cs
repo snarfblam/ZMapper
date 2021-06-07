@@ -32,6 +32,11 @@ namespace ZMapper
         public const int MapWidth = 16;
         public const int MapHeight = 8;
 
+        const int owCursorMargin = 2;
+        const int owCursorThickness = 2;
+        const int dungeonCursorMargin = 1;
+        const int dungeonCursorThickness = 2;
+
         public readonly Size CellSize = new Size(TileSize, TileSize);
 
         readonly Bitmap srcVisited;// = Resources.visitedDungeon;
@@ -66,10 +71,21 @@ namespace ZMapper
             for (var x = 0; x < 16; x++) for (var y = 0; y < MapHeight; y++) RenderOverworldScreen(x, y);
         }
 
-        public Rectangle InvertCell(int x, int y){
-            var rect = GetMapRect(x, y);
-            rect = new Rectangle(rect.X + 6, rect.Y + 6, rect.Width - 12, rect.Height - 12);
+        public Rectangle DrawInvertableCursor(int mapX, int mapY){
+            int margin = DungeonMap ? dungeonCursorMargin : owCursorMargin;
+            int margin2x = margin * 2;
+            int thickness = -(DungeonMap ? dungeonCursorThickness : owCursorThickness);
+
+            var rect = GetMapRect(mapX, mapY);
+            rect = new Rectangle(rect.X + margin, rect.Y + margin, rect.Width - margin2x, rect.Height - margin2x);
             InvertRect(mapImage, gMapImage, rect);
+            
+            if (thickness != 0) { // Uninvert center if thickness is specified
+                var inner = rect;
+                inner.Inflate(-2, -2);
+                InvertRect(mapImage, gMapImage, inner);
+            }
+
             return rect;
         }
         public Rectangle GetMapRect(int x, int y) {

@@ -1,5 +1,5 @@
 ﻿Soon
-- outline style cursor?
+- serialize which map is currently displayed
 - Titles on help pages - derp
 - Indicators for POI input
 - Goto target--Move cursor to corresponding dungeon staircase, or from OW to marked dungeon

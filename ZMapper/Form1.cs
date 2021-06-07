@@ -11,6 +11,8 @@ namespace ZMapper
 {
     public partial class Form1 : Form
     {
+
+
         static Icon ZMapIcon = Resources.ZMap;
         static Icon ZMapRedIcon = Resources.ZMapRed;
         const string BaseCaption = "ZMapper";
@@ -746,7 +748,7 @@ namespace ZMapper
 
         private void ToggleCursor() {
             cursorOn = !cursorOn;
-            this.pnlMap.Invalidate(currentMap.InvertCell(cursorX, cursorY));
+            this.pnlMap.Invalidate(currentMap.DrawInvertableCursor(cursorX, cursorY));
         }
 
 
