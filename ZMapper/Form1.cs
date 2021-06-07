@@ -25,6 +25,7 @@ namespace ZMapper
         //readonly Graphics gOwImage;
         
         //OverworldData owData = new OverworldData();
+        PoiMaskHelper poiHelper;
         string currentFileName = null;
 
         MapRenderer owMap = new MapRenderer(false);
@@ -95,6 +96,7 @@ namespace ZMapper
             btnHelp.ToolTipText = Program.InsertVersion("Help - ZMapper #version");
             LoadSettings();
 
+            this.poiHelper = new PoiMaskHelper(this.picPOI);
         }
         protected override void OnFormClosing(FormClosingEventArgs e) {
             base.OnFormClosing(e);
@@ -376,6 +378,7 @@ namespace ZMapper
                             return;
                         }
                         poiFirstDigit = digitValue - 1;
+                        poiHelper.HilightRow(poiFirstDigit.Value);
                     } else {
                         var newDigit = (digitValue + 9) % 10;
                         var poiValue = poiFirstDigit.Value * 10 + newDigit;
@@ -449,14 +452,16 @@ namespace ZMapper
 
         private void EnterPoiMode() {
             if (!poiMode) {
-                picPOI.Visible = true;
+                poiHelper.HilightLeft();
+                //picPOI.Visible = true;
                 poiMode = true;
                 poiFirstDigit = null;
             }
         }
         private void ExitPoiMode() {
             if (poiMode) {
-                picPOI.Visible = false;
+                poiHelper.HideInput();
+                //picPOI.Visible = false;
                 poiMode = false;
                 inputs.CancelModifiers();
             }
@@ -1032,6 +1037,90 @@ namespace ZMapper
     {
         public BufferedPanel() {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+        }
+    }
+
+    class PoiMaskHelper
+    {
+        public PictureBox PictureBox { get; private set; }
+        const int TileSize = MapRenderer.TileSize;
+
+        int topMargin;
+        int leftMargin;
+        int paletteWidth;
+        int paletteHeight;
+        Control leftMask;
+        Control unusedMask;
+        Control topMask;
+        Control mainMaskTop;
+        Control mainMaskBottom;
+
+        public PoiMaskHelper(PictureBox control) {
+            this.PictureBox = control;
+
+            topMargin = (control.Height - control.Image.Height) / 2;
+            leftMargin = (control.Width - control.Image.Width) / 2;
+            paletteWidth = control.Image.Width - TileSize;
+            paletteHeight = control.Image.Height - TileSize;
+
+            leftMask = new MaskControl();
+            unusedMask = new MaskControl();
+            topMask = new MaskControl();
+            mainMaskTop = new MaskControl();
+            mainMaskBottom = new MaskControl();
+
+            foreach (Control c in new Control[] { leftMask, unusedMask, topMask, mainMaskTop, mainMaskBottom }) {
+                PictureBox.Controls.Add(c);
+            }
+
+            topMask.Bounds = new Rectangle(leftMargin, topMargin, control.Width - leftMargin * 2, TileSize - 1);
+            leftMask.Bounds = new Rectangle(leftMargin, topMargin, TileSize - 1, control.Height - topMargin * 2);
+        }
+
+        public void HideInput() {
+            PictureBox.Visible = false;
+            leftMask.Visible = false;
+            unusedMask.Visible = false;
+            topMask.Visible = false;
+            mainMaskTop.Visible = false;
+            mainMaskBottom.Visible = false;
+        }
+
+        public void HilightLeft() {
+            leftMask.Visible = false;
+            unusedMask.Visible = false;
+            topMask.Visible = true;
+            mainMaskTop.Visible = false;
+            mainMaskBottom.Visible = false;
+            PictureBox.Visible = true;
+        }
+        public void HilightRow(int row) {
+            leftMask.Visible = true;
+            unusedMask.Visible = false;
+            topMask.Visible = false;
+            if (row == 0) {
+                mainMaskTop.Visible = false;
+            } else {
+                mainMaskTop.Bounds = new Rectangle(leftMargin + TileSize, topMargin + TileSize, paletteWidth, TileSize * (row));
+                mainMaskTop.Visible = true;
+            }
+            if (row == 4) {
+                mainMaskBottom.Visible = false;
+            } else {
+                mainMaskBottom.Bounds = new Rectangle(leftMargin + TileSize, topMargin + TileSize * (2 + row), paletteWidth, paletteHeight + TileSize * (5 - row));
+                mainMaskBottom.Visible = true;
+            }
+            PictureBox.Visible = true;
+        }
+
+        class MaskControl : Control
+        {
+            internal MaskControl() {
+                //SetStyle(ControlStyles.Opaque | ControlStyles.AllPaintingInWmPaint, true);
+                //BackColor = Color.Black;
+                SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.SupportsTransparentBackColor, true);
+                BackColor = Color.FromArgb(196, Color.Black);
+            }
         }
     }
 

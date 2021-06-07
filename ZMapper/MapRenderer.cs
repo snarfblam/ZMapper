@@ -28,7 +28,7 @@ namespace ZMapper
         }
         #endregion
 
-        const int TileSize = 24;
+        public const int TileSize = 24;
         public const int MapWidth = 16;
         public const int MapHeight = 8;
 

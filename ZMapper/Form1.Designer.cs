@@ -253,7 +253,7 @@
             this.picPOI.Image = global::ZMapper.Properties.Resources.OWPOISelector;
             this.picPOI.Location = new System.Drawing.Point(0, 9);
             this.picPOI.Name = "picPOI";
-            this.picPOI.Size = new System.Drawing.Size(333, 166);
+            this.picPOI.Size = new System.Drawing.Size(334, 166);
             this.picPOI.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picPOI.TabIndex = 9;
             this.picPOI.TabStop = false;
