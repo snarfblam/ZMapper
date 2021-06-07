@@ -153,12 +153,12 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(63, 20);
             this.btnSave.Text = "&Save";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.ButtonClick += new System.EventHandler(this.btnSave_ButtonClick);
             // 
             // btnSaveAs
             // 
             this.btnSaveAs.Name = "btnSaveAs";
-            this.btnSaveAs.Size = new System.Drawing.Size(123, 22);
+            this.btnSaveAs.Size = new System.Drawing.Size(152, 22);
             this.btnSaveAs.Text = "Save As...";
             this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 

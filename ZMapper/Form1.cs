@@ -798,6 +798,8 @@ namespace ZMapper
             Cereal itemData = this.itemPanel1.Serialize();
             result["items"] = itemData;
 
+            result["currentMap"] = DungeonMode ? (currentDungeonIndex + 1) : 0;
+
             return result;
         }
 
@@ -827,6 +829,9 @@ namespace ZMapper
 
             GenerateAllDungeonThumbs();
             cursorOn = false;
+
+            int mapIndex = data.Int["currentMap"] ?? 0;
+            if (mapIndex > 0) EnterDungeonMode(mapIndex - 1);
         }
 
         private void ClearEntireTracker() {
@@ -1010,10 +1015,6 @@ namespace ZMapper
             if (e.KeyCode == Keys.F1 && e.Modifiers == Keys.None) {
                 HTMLForm.ShowAbout(this);
             }
-        }
-
-        private void btnSave_Click(object sender, EventArgs e) {
-
         }
 
     }
