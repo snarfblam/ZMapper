@@ -1,5 +1,6 @@
 <html><body>
 <p class="help-home"><a href="page://about"><img src="img://help" class="help">Help Home</a></p>
+<h2>License Information</h2>
 <p>ZMapper may be used and distributed without restriction. ZMapper source code, except for third-party components and code, is released under The Unlicense. It may used, modified, and distributed freely.</p>
 <blockquote>
 <p>This is free and unencumbered software released into the public domain.</p>

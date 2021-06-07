@@ -1,12 +1,13 @@
 <html><body>
 <p class="help-home"><a href="page://about"><img src="img://help" class="help">Help Home</a></p>
+<h2>Input</h2>
 Contents:
 <ol>
 <li><a href="#kb">Keyboard Input</a></li>
 <li><a href="#mouse">Mouse Input</a></li>
 </ol>
 
-<h2><a id="kb">Keyboard Input</a></h2>
+<h3><a id="kb">Keyboard Input</a></h3>
 <p>ZMapper uses global hotkeys so that you don't need to switch between programs if playing in an emulator. Currently, inputs are hardcoded and use the number pad.</p>
 <p><img src="img://input" class="img-block"></p>
 <ul>
@@ -22,7 +23,7 @@ Contents:
 <li><strong>Tilde (`)</strong> - Switch to overworld map</li>
 <li><strong>Digits 1-9</strong> - (Non-number pad digits.) Switch to a dungeon map.</li>
 </ul>
-<h2><a id="mouse">Mouse Input</a></h2>
+<h3><a id="mouse">Mouse Input</a></h3>
 <p>The mouse offers limited functionality.</p>
 <h4>Item Icons</h4>
 <ul>
