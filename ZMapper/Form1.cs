@@ -97,6 +97,7 @@ namespace ZMapper
             LoadSettings();
 
             this.poiHelper = new PoiMaskHelper(this.picPOI);
+
         }
         protected override void OnFormClosing(FormClosingEventArgs e) {
             base.OnFormClosing(e);
@@ -1015,6 +1016,14 @@ namespace ZMapper
             if (e.KeyCode == Keys.F1 && e.Modifiers == Keys.None) {
                 HTMLForm.ShowAbout(this);
             }
+        }
+
+        private void btnKeyMapping_Click(object sender, EventArgs e) {
+            using (var HotkeyEditor = new HotkeyEditor()) {
+                HotkeyEditor.SetMappings(inputs.GetKeyMapping());
+                HotkeyEditor.ShowDialog();
+            }
+
         }
 
     }

@@ -41,6 +41,8 @@
             this.pnlMap = new ZMapper.BufferedPanel();
             this.itemPanel1 = new ZMapper.ItemPanel();
             this.picPOI = new System.Windows.Forms.PictureBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnKeyMapping = new System.Windows.Forms.ToolStripMenuItem();
             toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.MainToolbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCaption)).BeginInit();
@@ -158,7 +160,7 @@
             // btnSaveAs
             // 
             this.btnSaveAs.Name = "btnSaveAs";
-            this.btnSaveAs.Size = new System.Drawing.Size(152, 22);
+            this.btnSaveAs.Size = new System.Drawing.Size(123, 22);
             this.btnSaveAs.Text = "Save As...";
             this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
@@ -172,7 +174,9 @@
             this.btnInputClass,
             this.toolStripSeparator1,
             this.btnAlwaysOnTop,
-            this.btnNoFocus});
+            this.btnNoFocus,
+            this.toolStripSeparator2,
+            this.btnKeyMapping});
             this.toolStripButton2.ForeColor = System.Drawing.Color.White;
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -259,6 +263,18 @@
             this.picPOI.TabStop = false;
             this.picPOI.Visible = false;
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(234, 6);
+            // 
+            // btnKeyMapping
+            // 
+            this.btnKeyMapping.Name = "btnKeyMapping";
+            this.btnKeyMapping.Size = new System.Drawing.Size(237, 22);
+            this.btnKeyMapping.Text = "Edit Key Mappings...";
+            this.btnKeyMapping.Click += new System.EventHandler(this.btnKeyMapping_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,6 +329,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem btnAlwaysOnTop;
         private System.Windows.Forms.ToolStripMenuItem btnNoFocus;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem btnKeyMapping;
     }
 }
 

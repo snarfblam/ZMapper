@@ -1,5 +1,5 @@
 ﻿Soon
-- serialize which map is currently displayed
 - Goto target--Move cursor to corresponding dungeon staircase, or from OW to marked dungeon
 - Configurable input
 - Update readme text, Screenshot in readme
+- (Infrequent) Active window polling for the event where a valid window is activated but it doesn't properly register

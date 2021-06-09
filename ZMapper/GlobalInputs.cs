@@ -49,6 +49,20 @@ namespace ZMapper
             hook.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook_KeyPressed);
         }
 
+        public IDictionary<Keys, MapOperation> GetKeyMapping() {
+            return mappings;
+        }
+
+        public void SetKeyMapping(IDictionary<Keys, MapOperation> newMappings) {
+            throw new NotImplementedException("Doesn't exist bro");
+
+            // Unmap if keys were mapped
+            // Replace *only* operations specified, e.g...
+            //      First pass: if newMappings specifies a key for 'GotoOverworld', remove any existing mappings for 'GotoOverworld'
+            //      Second pass: add all mappings from newMappings (unless Keys.None or MapOperations.None -- This allows a user to unmap a key entirely)
+            // The point being, to NOT remove mappings for any operations that were not customized
+        }
+
         public void MapKeys() {
             if (keysMapped) return;
             foreach (KeyValuePair<Keys, MapOperation> entry in mappings) {
@@ -118,7 +132,7 @@ namespace ZMapper
         }
     }
 
-    enum MapOperation
+    public enum MapOperation
     {
         /// <summary>
         /// A key press was registered but does not correspond to a map operation

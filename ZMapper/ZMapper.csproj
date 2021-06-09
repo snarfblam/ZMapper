@@ -59,6 +59,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalInputs.cs" />
+    <Compile Include="HotkeyEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HotkeyEditor.Designer.cs">
+      <DependentUpon>HotkeyEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="HTMLForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     <Compile Include="Win32.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HotkeyEditor.resx">
+      <DependentUpon>HotkeyEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HTMLForm.resx">
       <DependentUpon>HTMLForm.cs</DependentUpon>
