@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FasTrak;
 
 namespace ZMapper
 {
@@ -53,9 +53,52 @@ namespace ZMapper
             return mappings;
         }
 
-        public void SetKeyMapping(IDictionary<Keys, MapOperation> newMappings) {
-            throw new NotImplementedException("Doesn't exist bro");
+        public Cereal Serialize() {
+            Cereal result = new Cereal();
+            foreach (var mapping in mappings) {
+                result[mapping.Key.ToString()] = mapping.Value.ToString();
+            }
 
+            return result;
+        }
+
+        public void Deserialize(Cereal newMappings) {
+            Dictionary<Keys, MapOperation> decodedMapping = new Dictionary<Keys, MapOperation>();
+            foreach (var keyName in newMappings.Keys) {
+                Keys key;
+                MapOperation op = MapOperation.None;
+                bool valid = 
+                    Enum.TryParse<Keys>(keyName, out key) &&
+                    Enum.TryParse<MapOperation>(newMappings.String[keyName] ?? "", out op);
+                if (valid) decodedMapping.Add(key, op);
+            }
+
+            ApplyMapping(decodedMapping);
+        }
+
+        public void ApplyMapping(IDictionary<Keys, MapOperation> newMappings) {
+            //throw new NotImplementedException("Doesn't exist bro");
+
+            var wasMapped = keysMapped;
+
+            if (wasMapped) UnmapKeys(); 
+            {
+                var newlyMappedOperations = newMappings.Values;
+                List<Keys> keysToRemove = new List<Keys>();
+                // Get the key for each newly mapped operation
+                foreach (var mappedKey in mappings) {
+                    if (newlyMappedOperations.Contains(mappedKey.Value)) {
+                        keysToRemove.Add(mappedKey.Key);
+                    }
+                }
+                // Unmap any newly mapped operation
+                foreach (var key in keysToRemove) mappings.Remove(key);
+                // Add new mappings
+                foreach (var newMapping in newMappings) {
+                    mappings.Add(newMapping.Key, newMapping.Value);
+                }
+            }
+            if (wasMapped) MapKeys();
             // Unmap if keys were mapped
             // Replace *only* operations specified, e.g...
             //      First pass: if newMappings specifies a key for 'GotoOverworld', remove any existing mappings for 'GotoOverworld'

@@ -115,6 +115,7 @@ namespace ZMapper
             }
             Program.AppSettings.Topmost = btnAlwaysOnTop.Checked;
             Program.AppSettings.NoFocus = btnNoFocus.Checked;
+            Program.AppSettings.InputMapping = inputs.Serialize();
         }
 
         private void LoadSettings() {
@@ -128,6 +129,9 @@ namespace ZMapper
 
             SetTopmost(Program.AppSettings.Topmost);
             SetNoFocus(Program.AppSettings.NoFocus);
+            if (Program.AppSettings.InputMapping != null) {
+                inputs.Deserialize(Program.AppSettings.InputMapping);
+            }
         }
 
         protected override CreateParams CreateParams {
@@ -1019,9 +1023,13 @@ namespace ZMapper
         }
 
         private void btnKeyMapping_Click(object sender, EventArgs e) {
+            IDictionary<Keys, MapOperation> newMapping = null;
+            
             using (var HotkeyEditor = new HotkeyEditor()) {
                 HotkeyEditor.SetMappings(inputs.GetKeyMapping());
                 HotkeyEditor.ShowDialog();
+                newMapping = HotkeyEditor.GetKeyMappings();
+                inputs.ApplyMapping(newMapping);
             }
 
         }

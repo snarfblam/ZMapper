@@ -25,6 +25,7 @@ namespace ZMapper
             public const string ClassRegex = "classRegex";
             public const string Topmost = "topmost";
             public const string NoFocus = "noFocus";
+            public const string InputMapping = "inputMapping";
         }
         static class Defaults
         {
@@ -38,12 +39,14 @@ namespace ZMapper
         public string ClassRegex { get; set; }
         public bool Topmost { get; set; }
         public bool NoFocus { get; set; }
+        public Cereal InputMapping { get; set; }
 
         internal Settings() {
             this.CaptionRegex = Defaults.CaptionRegex;
             this.ClassRegex = Defaults.ClassRegex;
             this.Topmost = Defaults.Topmost;
             this.NoFocus = Defaults.NoFocus;
+            this.InputMapping = null;
         }
 
         public string Serialize() {
@@ -52,6 +55,7 @@ namespace ZMapper
             if (ClassRegex != null) data[Keys.ClassRegex] = Escape(ClassRegex);
             data[Keys.Topmost] = Topmost;
             data[Keys.NoFocus] = NoFocus;
+            if (InputMapping != null) data[Keys.InputMapping] = InputMapping;
 
             return data.Encode();
         }
@@ -65,6 +69,8 @@ namespace ZMapper
                 result.ClassRegex = Unescape(data.String[Keys.ClassRegex]);
                 result.Topmost = data.Boolean[Keys.Topmost] ?? false;
                 result.NoFocus = data.Boolean[Keys.NoFocus] ?? false;
+
+                result.InputMapping = data.Group[Keys.InputMapping];
             }
 
             return result;

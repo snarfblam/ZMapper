@@ -13,23 +13,27 @@ namespace ZMapper
 {
     public partial class HotkeyEditor : Form
     {
+        HotkeyPropertyContainer editableMapping = new HotkeyPropertyContainer();
+
         public HotkeyEditor() {
             InitializeComponent();
 
         }
 
         public void SetMappings(IDictionary<Keys, MapOperation> mapping) {
-            var mappingProps = new HotkeyPropertyContainer();
-            mappingProps.CopyFrom(mapping);
-            this.propertyGrid1.SelectedObject = mappingProps;
+            editableMapping.CopyFrom(mapping);
+            this.propertyGrid1.SelectedObject = editableMapping;
         }
 
-        private void propertyGrid1_SelectedGridItemChanged(object sender, SelectedGridItemChangedEventArgs e) {
+        public IDictionary<Keys, MapOperation> GetKeyMappings() {
+            return editableMapping.GetMapping();
         }
     }
 
+
     class KeyInputForm : Form
     {
+        Label pressKeyLabel;
         internal KeyInputForm() {
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             StartPosition = FormStartPosition.CenterParent;
@@ -38,7 +42,7 @@ namespace ZMapper
             KeyPreview = true;
             ShowInTaskbar = false;
 
-            Label pressKey = new Label() {
+            pressKeyLabel = new Label() {
                 BackColor = SystemColors.Info,
                 BorderStyle = BorderStyle.FixedSingle,
                 Text = "Press a key...",
@@ -51,7 +55,7 @@ namespace ZMapper
                 Top = 30,
                 Height = 20,
                 Width = 60,
-                Text = "&Cancel",
+                Text = "Cancel",
             };
 
             Button btnReset = new Button() {
@@ -59,7 +63,19 @@ namespace ZMapper
                 Top = 30,
                 Height = 20,
                 Width = 60,
-                Text = "&Reset",
+                Text = "Reset",
+            };
+
+            Button btnPlaceholder = new Button() {
+                Left = 1000,
+                Text = "_",
+            };
+            btnPlaceholder.LostFocus += (s,e) => btnPlaceholder.TabStop = false;
+            btnPlaceholder.Click += (s,e) => {
+                if (this.PressedKey != null) {
+                    DialogResult =  System.Windows.Forms.DialogResult.OK;
+                    Close();
+                }
             };
 
             btnCancel.Click += (sender, args) => {
@@ -73,16 +89,22 @@ namespace ZMapper
                 PressedKeyChar = null;
             };
 
+            this.VisibleChanged += (sender, args) => pressKeyLabel.Focus();
+
+
+            Controls.Add(btnPlaceholder);
             Controls.Add(btnReset);
             Controls.Add(btnCancel);
-            Controls.Add(pressKey);
+            Controls.Add(pressKeyLabel);
 
-            pressKey.Focus();
+            //CancelButton = btnCancel;
+
+            btnPlaceholder.Focus();
         }
 
-        protected override void OnLoad(EventArgs e) {
-            base.OnLoad(e);
-        }
+
+
+        
 
         public Keys? PressedKey { get; private set; }
         public string PressedKeyChar { get; private set; }
@@ -98,9 +120,26 @@ namespace ZMapper
         //    return base.ShowDialog(owner);
         //}
 
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+            var keys = keyData & Keys.KeyCode;
+            if (keys == Keys.Tab || keys == Keys.Enter || keys == Keys.Escape) {
+                OnKeyDown(new KeyEventArgs(keyData));
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        protected override void OnPreviewKeyDown(PreviewKeyDownEventArgs e) {
+            if (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.Escape) {
+                e.IsInputKey = true;
+            }
+            base.OnPreviewKeyDown(e);
+        }
+
         protected override void OnKeyDown(KeyEventArgs e) {
             base.OnKeyDown(e);
-
             PressedKey = e.KeyCode;
         }
 
@@ -479,8 +518,9 @@ namespace ZMapper
            { Keys.RShiftKey, "Right Shift"},
            { Keys.LControlKey, "Left Control"},
            { Keys.RControlKey, "Right Control"},
-           { Keys.LMenu, "Left Menu"},
-           { Keys.RMenu, "Right Menu"},
+           { Keys.Menu, "Alt"},
+           { Keys.LMenu, "Left Alt"},
+           { Keys.RMenu, "Right Alt"},
            { Keys.Back, "Backspace"}, 
            { Keys.BrowserBack, "Navigate Back"},
            { Keys.BrowserForward, "Navigate Forward"},
@@ -500,7 +540,7 @@ namespace ZMapper
            { Keys.SelectMedia, "Select Media"},
            { Keys.LaunchApplication1, "Lanch App 1"},
            { Keys.LaunchApplication2, "Launch App 2"},
-           { Keys.OemSemicolon, ""},
+           { Keys.OemSemicolon, "Semicolon"},
            { Keys.Oemplus, "Plus"},
            { Keys.Oemcomma, "Comma"},
            { Keys.OemMinus, "Minus"},

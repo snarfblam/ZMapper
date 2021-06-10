@@ -42,7 +42,6 @@
             this.propertyGrid1.Size = new System.Drawing.Size(296, 422);
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.ToolbarVisible = false;
-            this.propertyGrid1.SelectedGridItemChanged += new System.Windows.Forms.SelectedGridItemChangedEventHandler(this.propertyGrid1_SelectedGridItemChanged);
             // 
             // notifyIcon1
             // 
