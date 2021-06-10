@@ -365,6 +365,15 @@ namespace ZMapper
             QueueThumbnailUpdate();
         }
 
+        static int? GetKeyValue(Keys k) {
+            if (k >= Keys.D0 && k <= Keys.D9) {
+                return (int)k - (int)Keys.D0;
+            }
+            if (k >= Keys.NumPad0 && k <= Keys.NumPad9) {
+                return (int)k - (int)Keys.NumPad0;
+            }
+            return null;
+        }
         void inputs_KeyPressed(object sender, MapOperationEventArgs e) {
             if (poiMode) {
                 if (e.Op == MapOperation.MarkClear) {
@@ -372,25 +381,7 @@ namespace ZMapper
                     ExitPoiMode();
                 }
 
-                int digitValue = (int)e.Key - (int)Keys.NumPad0;
-                if (digitValue < 0 || digitValue > 9) {
-                    ExitPoiMode();
-                    return;
-                } else {
-                    if (poiFirstDigit == null) {
-                        if (digitValue == 0 || digitValue > 5) {
-                            ExitPoiMode();
-                            return;
-                        }
-                        poiFirstDigit = digitValue - 1;
-                        poiHelper.HilightRow(poiFirstDigit.Value);
-                    } else {
-                        var newDigit = (digitValue + 9) % 10;
-                        var poiValue = poiFirstDigit.Value * 10 + newDigit;
-                        AddPoi(poiValue);
-                        ExitPoiMode();
-                    }
-                }
+                HandlePoiDigit(e.Key);
             } else {
                 var op = e.Op;
                 HandleMoveOp(op);
@@ -425,6 +416,29 @@ namespace ZMapper
                     Undo();
                 }
             }
+        }
+
+        private void HandlePoiDigit(Keys key) {
+            int digitValue = GetKeyValue(key) ?? -1;
+            if (digitValue < 0 || digitValue > 9) {
+                ExitPoiMode();
+                return;
+            } else {
+                if (poiFirstDigit == null) {
+                    if (digitValue == 0 || digitValue > 5) {
+                        ExitPoiMode();
+                        return;
+                    }
+                    poiFirstDigit = digitValue - 1;
+                    poiHelper.HilightRow(poiFirstDigit.Value);
+                } else {
+                    var newDigit = (digitValue + 9) % 10;
+                    var poiValue = poiFirstDigit.Value * 10 + newDigit;
+                    AddPoi(poiValue);
+                    ExitPoiMode();
+                }
+            }
+            return;
         }
 
         private void AddPoi(int value) {
@@ -1019,6 +1033,8 @@ namespace ZMapper
 
             if (e.KeyCode == Keys.F1 && e.Modifiers == Keys.None) {
                 HTMLForm.ShowAbout(this);
+            } else {
+                if (poiMode) HandlePoiDigit(e.KeyCode);
             }
         }
 
