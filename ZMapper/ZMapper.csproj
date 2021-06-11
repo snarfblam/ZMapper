@@ -50,6 +50,9 @@
     <Compile Include="BitArray32.cs" />
     <Compile Include="Cereal.cs" />
     <Compile Include="Cerealizer.cs" />
+    <Compile Include="ClickThruToolStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direction.cs" />
     <Compile Include="Ext.cs" />
     <Compile Include="Form1.cs">

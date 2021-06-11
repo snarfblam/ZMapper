@@ -24,7 +24,7 @@
             this.FileOpener = new System.Windows.Forms.OpenFileDialog();
             this.FileSaver = new System.Windows.Forms.SaveFileDialog();
             this.picCaption = new System.Windows.Forms.PictureBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip1 = new ZMapper.ClickThruToolStrip();
             this.btnHelp = new System.Windows.Forms.ToolStripButton();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnOpen = new System.Windows.Forms.ToolStripButton();
@@ -112,6 +112,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(734, 27);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
             // 
             // btnHelp
             // 
@@ -161,7 +162,7 @@
             // btnSaveAs
             // 
             this.btnSaveAs.Name = "btnSaveAs";
-            this.btnSaveAs.Size = new System.Drawing.Size(152, 22);
+            this.btnSaveAs.Size = new System.Drawing.Size(124, 22);
             this.btnSaveAs.Text = "Save As...";
             this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
@@ -317,7 +318,7 @@
         private System.Windows.Forms.SaveFileDialog FileSaver;
         private System.Windows.Forms.PictureBox picCaption;
         private System.Windows.Forms.PictureBox picPOI;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private ZMapper.ClickThruToolStrip menuStrip1;
         private System.Windows.Forms.ToolStripButton btnHelp;
         private System.Windows.Forms.ToolStripButton btnNew;
         private System.Windows.Forms.ToolStripButton btnOpen;

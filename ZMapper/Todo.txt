@@ -1,5 +1,7 @@
 ﻿Soon
-- Goto target--Move cursor to corresponding dungeon staircase, or from OW to marked dungeon
 - Update (Options, Input) help for configurable input
 - Update readme text, Screenshot in readme
 - (Infrequent) Active window polling for the event where a valid window is activated but it doesn't properly register
+
+Maybe
+- Goto target--Move cursor to corresponding dungeon staircase, or from OW to marked dungeon

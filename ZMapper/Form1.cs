@@ -1050,6 +1050,10 @@ namespace ZMapper
 
         }
 
+        private void menuStrip1_MouseDown(object sender, MouseEventArgs e) {
+            ActiveWinTracker.SetForegroundWindow(this.Handle);
+        }
+
     }
 
     class Undoable
