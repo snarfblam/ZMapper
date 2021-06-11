@@ -208,7 +208,7 @@ namespace ZMapper.Properties {
         ///&lt;p&gt;&amp;nbsp;&lt;/p&gt;
         ///&lt;h3&gt;Help Topics&lt;/h3&gt;
         ///&lt;ul&gt;
-        ///&lt;li&gt;&lt;a href=&quot;page://input&quot;&gt;Tracker Input&lt;/a&gt;&lt;/li&gt;
+        ///&lt;li&gt;&lt;a href=&quot;page://input&quot;&gt;Input&lt;/a&gt;&lt;/li&gt;
         ///&lt;li&gt;&lt;a href=&quot;page://options&quot;&gt;Options&lt;/a&gt;&lt;/li&gt;
         ///&lt;li&gt;&lt;a href=&quot;page://license&quot;&gt;License Information&lt;/a&gt;&lt;/li&gt;
         ///&lt;/ul&gt;
@@ -223,42 +223,44 @@ namespace ZMapper.Properties {
         /// <summary>
         ///   Looks up a localized string similar to html {
         ///    margin: 0;
-        ///    padding: 10px;
+        ///    padding: 0px;
         ///}
         ///
         ///body {
         ///    margin: 0px;
-        ///    
+        ///    padding-left: 10px;
         ///}
         ///
-        ///h1, h2, h3 {
+        ///h3 {
         ///    margin: 0;
         ///    text-decoration: underline;
         ///}
         ///
-        ///h1, h2, h3, h4, h5, p {
+        ///h3, h4, h5, p, ul, ol {
         ///    margin-left: 0px;
         ///    margin-bottom: 0.5em;
         ///    margin-top: 0;
-        ///    indent: 0;
+        ///    margin-right: 10px
         ///}
         ///
-        ///ul, ol {
-        ///    margin-top: 0;
+        ///p, div.p {
+        ///    margin-left: 0px;
         ///}
         ///
-        ///.img-block {
-        ///    display: block;
-        ///    margin-top: 10px;
-        ///    margin-bottom: 10px;
+        ///li {
+        ///    margin-left: 18px;
         ///}
         ///
-        ///blockquote {
-        ///    background-color: #EEEEEE;
-        ///    margin-left: 1em;
-        ///    padding-left: .5em;
-        ///    margin-right: 0;
-        ///   [rest of string was truncated]&quot;;.
+        ///h2 {
+        ///    margin-left: -10px;
+        ///    padding: 8px;
+        ///    margin-top: 0px;
+        ///    background-color: #BECDE0;
+        ///}
+        ///
+        ///h3 {
+        ///    font-size: 20px;
+        ///    margin-t [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HelpCSS {
             get {
@@ -268,18 +270,16 @@ namespace ZMapper.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;html&gt;&lt;body&gt;
-        ///
+        ///&lt;p class=&quot;help-home&quot;&gt;&lt;a href=&quot;page://about&quot;&gt;&lt;img src=&quot;img://help&quot; class=&quot;help&quot;&gt;Help Home&lt;/a&gt;&lt;/p&gt;
+        ///&lt;h2&gt;Input&lt;/h2&gt;
         ///Contents:
         ///&lt;ol&gt;
         ///&lt;li&gt;&lt;a href=&quot;#kb&quot;&gt;Keyboard Input&lt;/a&gt;&lt;/li&gt;
         ///&lt;li&gt;&lt;a href=&quot;#mouse&quot;&gt;Mouse Input&lt;/a&gt;&lt;/li&gt;
         ///&lt;/ol&gt;
         ///
-        ///&lt;h2&gt;&lt;a id=&quot;kb&quot;&gt;Keyboard Input&lt;/a&gt;&lt;/h2&gt;
-        ///&lt;p&gt;ZMapper uses global hotkeys so that you don&apos;t need to switch between programs if playing in an emulator. Currently, inputs are hardcoded and use the number pad.&lt;/p&gt;
-        ///&lt;p&gt;&lt;img src=&quot;img://input&quot; class=&quot;img-block&quot;&gt;&lt;/p&gt;
-        ///&lt;ul&gt;
-        ///&lt;li&gt;&lt;strong&gt;Directional&lt;/strong&gt; - Move the cursor on the map. If the cursor moves onto an unvisited spot, it will be m [rest of string was truncated]&quot;;.
+        ///&lt;h3&gt;&lt;a id=&quot;kb&quot;&gt;Keyboard Input&lt;/a&gt;&lt;/h3&gt;
+        ///&lt;p&gt;ZMapper uses global hotkeys for input. That means that while ZMapper input is active (red circle in icon), the keys that ZMapper uses will not work with any other applications. You can configure when ZMapper input is active via &lt; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HelpInput {
             get {
@@ -289,10 +289,12 @@ namespace ZMapper.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;html&gt;&lt;body&gt;
+        ///&lt;p class=&quot;help-home&quot;&gt;&lt;a href=&quot;page://about&quot;&gt;&lt;img src=&quot;img://help&quot; class=&quot;help&quot;&gt;Help Home&lt;/a&gt;&lt;/p&gt;
+        ///&lt;h2&gt;License Information&lt;/h2&gt;
         ///&lt;p&gt;ZMapper may be used and distributed without restriction. ZMapper source code, except for third-party components and code, is released under The Unlicense. It may used, modified, and distributed freely.&lt;/p&gt;
         ///&lt;blockquote&gt;
         ///&lt;p&gt;This is free and unencumbered software released into the public domain.&lt;/p&gt;
-        ///&lt;p&gt;Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, an [rest of string was truncated]&quot;;.
+        ///&lt;p&gt;Anyone is free to copy, modify, publish, use, compile, sell, or [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HelpLicense {
             get {
@@ -314,12 +316,12 @@ namespace ZMapper.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;html&gt;&lt;body&gt;
-        ///&lt;a href=&quot;page://about&quot;&gt;&lt;img src=&quot;img://help&quot;&gt;Help Home&lt;/a&gt;
+        ///&lt;p class=&quot;help-home&quot;&gt;&lt;a href=&quot;page://about&quot;&gt;&lt;img src=&quot;img://help&quot; class=&quot;help&quot;&gt;Help Home&lt;/a&gt;&lt;/p&gt;
         ///&lt;h2&gt;Options&lt;/h2&gt;
         ///&lt;h4&gt;Input Always Enabled&lt;/h4&gt;
         ///&lt;p&gt;With this setting, hotkeys are always enabled and will always override all other applications as long as ZMapper is open.&lt;/p&gt;
         ///&lt;h4&gt;Enabled For Window Caption&lt;/h4&gt;
-        ///&lt;p&gt;This setting will enable ZMapper hotkeys only for windows with specific captions. For example, if you use Mesen, you might want to use the pattern &lt;code&gt;Mesen*&lt;/code&gt;. If you use multiple emulators, you can use a regula [rest of string was truncated]&quot;;.
+        ///&lt;p&gt;This setting will enable ZMapper hotkeys only for windows with specific captions. For example, if you use Mesen, you might want to use the pattern &lt;code&gt;Mesen*&lt;/code&gt;. If you use mu [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HelpOptions {
             get {
@@ -353,6 +355,16 @@ namespace ZMapper.Properties {
         internal static System.Drawing.Bitmap img_input {
             get {
                 object obj = ResourceManager.GetObject("img_input", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Input2 {
+            get {
+                object obj = ResourceManager.GetObject("Input2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -453,6 +465,16 @@ namespace ZMapper.Properties {
         internal static System.Drawing.Bitmap OWPOISelector {
             get {
                 object obj = ResourceManager.GetObject("OWPOISelector", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RedDot {
+            get {
+                object obj = ResourceManager.GetObject("RedDot", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

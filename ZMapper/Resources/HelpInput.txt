@@ -8,36 +8,37 @@ Contents:
 </ol>
 
 <h3><a id="kb">Keyboard Input</a></h3>
-<p>ZMapper uses global hotkeys so that you don't need to switch between programs if playing in an emulator. Currently, inputs are hardcoded and use the number pad.</p>
-<p><img src="img://input" class="img-block"></p>
+<p>ZMapper uses global hotkeys for input. That means that while ZMapper input is active (the icon will show a red circle <img src="img://RedDot">), the keys that ZMapper uses will not work with any other applications. You can configure when ZMapper input is active via <a href="page://options">Options</a>.</p>
+<p>Keyboard input is configurable. The default keyboard mapping is depicted, with functions described below.</p>
+<p><img src="img://input2" class="img-block"></p>
 <ul>
-<li><strong>Directional</strong> - Move the cursor on the map. If the cursor moves onto an unvisited spot, it will be marked visited.</li>
+<li><strong>Directional</strong> - Move the cursor on the map, marking screens as visited. Used in conjunction with other keys as well.</li>
 <li><strong>Bomb</strong> - Toggle bomb marker for bombable caves and dungeon walls. In dungeons, press this key followed by a directional to mark a wall which can not be bombed through.</li>
 <li><strong>Candle</strong> - Toggle candle marker for burnable bushes.</li>
-<li><strong>Flute</strong> - Toggle the recorder marker for secrets revealed by the recorder.</li>
+<li><strong>Recorder</strong> - Toggle the recorder marker for secrets revealed by the recorder.</li>
 <li><strong>Screen connections</strong> - Press this key followed by a directional to toggle screen connections. Draw borders around screens in the overworld, and draw connections between rooms in dungeons.</li>
-<li><strong>Point of Interest</strong> - Mark a screen as a point of interest. Press this key, and then select a marker by entering a 2-digit code on the number pad.</li>
+<li><strong>Point of Interest</strong> - Mark a screen as a point of interest. Press this key and then enter a 2-digit number corresponding to the desired POI marker.</li>
 <li><strong>Cleared</strong> - Mark a screen as cleared. In the overworld, a cleared screen will not show any other markers (bomb, flute, or candle), but you can press this key again to unclear the screen and restore the markers.</li>
-<li><strong>Undo</strong> - Undoes the last change made. This does not include revealing/hiding screens.</li>
-<li><strong>Delete Screen</strong> - Marks a screen as unvisited. Note that the state of markers and screen connections is preserved and will be restored when the screen is marked as visited again.</li>
+<li><strong>Undo</strong> - Undoes the last change made. This does not include marking screens as visited/unvisited.</li>
+<li><strong>Delete Screen</strong> - Marks a screen as unvisited. Note that this does not actually remove any data and the screen will be restored to its previous state when marked as visited again.</li>
 <li><strong>Tilde (`)</strong> - Switch to overworld map</li>
-<li><strong>Digits 1-9</strong> - (Non-number pad digits.) Switch to a dungeon map.</li>
+<li><strong>Digits 1-9</strong> - (Non-number-pad digits.) Switch to a dungeon map.</li>
 </ul>
 <h3><a id="mouse">Mouse Input</a></h3>
-<p>The mouse offers limited functionality.</p>
+<p>Mouse input is minimal.</p>
 <h4>Item Icons</h4>
 <ul>
-<li>Left click - Mark an item obtained. For progressive items (e.g. Sword, White Sword, Magic Sword) each successive click advances to the next item level.</li>
-<li>Right click - Mark an item unobtained. For progressive items, each successive click reverts the item to the previous level.</li>
+<li><strong>Left click</strong> - Mark an item obtained. For progressive items (e.g. Sword, White Sword, Magic Sword) each successive click advances to the next item level.</li>
+<li><strong>Right click</strong> - Mark an item unobtained. For progressive items, each successive click reverts the item to the previous level.</li>
 </ul>
 <h4>Map</h4>
 <ul>
-<li>Left click - Place the cursor on a screen and mark it visited.</li>
-<li>Right click - Mark a screen as unvisited. Note that the state of markers and screen connections is preserved and will be restored when the screen is marked as visited again.</li>
+<li><strong>Left click</strong> - Place the cursor on a screen and mark it visited.</li>
+<li><strong>Right click</strong> - Mark a screen as unvisited. Note that the state of markers and screen connections is preserved and will be restored when the screen is marked as visited again.</li>
 </ul>
 <h4>Dungeon Thumbnails</h4>
 <ul>
-<li>Left click - Open the dungeon's tracker. Clicking on the currently displayed dungeon's thumb returns you to the overworld tracker.</li>
+<li><strong>Left click</strong> - Switch to the clicked map. If the clicked map is already open, the overworld will be shown instead.</li>
 </ul>
 
 </body></html>

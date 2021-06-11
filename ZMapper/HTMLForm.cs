@@ -93,6 +93,12 @@ namespace ZMapper
                     case "input":
                         e.Callback(Resources.img_input);
                         break;
+                    case "input2":
+                        e.Callback(Resources.Input2);
+                        break;
+                    case "RedDot":
+                        e.Callback(Resources.RedDot);
+                        break;
                     case "help":
                         e.Callback(Resources.Help);
                         break;

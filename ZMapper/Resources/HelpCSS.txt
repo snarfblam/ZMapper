@@ -5,7 +5,7 @@ html {
 
 body {
     margin: 0px;
-    
+    padding-left: 10px;
 }
 
 h3 {
@@ -14,21 +14,30 @@ h3 {
 }
 
 h3, h4, h5, p, ul, ol {
-    margin-left: 10px;
+    margin-left: 0px;
     margin-bottom: 0.5em;
     margin-top: 0;
     margin-right: 10px
-    indent: 0;
 }
+
+p, div.p {
+    margin-left: 0px;
+}
+
 li {
     margin-left: 18px;
 }
 
 h2 {
-    
+    margin-left: -10px;
     padding: 8px;
     margin-top: 0px;
     background-color: #BECDE0;
+}
+
+h3 {
+    font-size: 20px;
+    margin-top: 1em;
 }
 
 ul, ol {
@@ -50,6 +59,15 @@ blockquote {
     max-width: 800px;
 }
 
+hr {
+    height: 1px;
+    width: 80%;
+    margin-left: 10%;
+    color: #DDDDDD;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
 img.help {
     vertical-align: bottom;
 }
@@ -57,8 +75,9 @@ img.help {
 .help-home {
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-left: 0px;
+    margin-left: -10px;
     margin-right: 0px;
+    width: 100%;
     padding-top: 4px;
     padding-bottom: 4px;
     text-align: center;
@@ -70,4 +89,8 @@ img.help {
 code {
     font-family: Console, "Courier New", monospace;
     background-color: #EEEEEE;
+}
+
+strong {
+    color: #6060A0;
 }

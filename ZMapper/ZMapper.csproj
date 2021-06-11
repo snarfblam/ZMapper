@@ -226,6 +226,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="README.md" />
     <None Include="Resources\ItemLayout.json" />
     <None Include="Resources\layout.json" />
     <None Include="Resources\unvisited.png" />
@@ -317,6 +318,8 @@
   <ItemGroup>
     <Content Include="HtmlRenderer\Core\Utils\ImageError.png" />
     <Content Include="HtmlRenderer\Core\Utils\ImageLoad.png" />
+    <None Include="Resources\RedDot.png" />
+    <None Include="Resources\Input2.png" />
     <None Include="Resources\Help.png" />
     <None Include="Resources\HelpOptions.txt" />
     <None Include="Resources\HelpLicense.txt" />
