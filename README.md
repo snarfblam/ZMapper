@@ -4,7 +4,7 @@ A general purpose tracker for Legend of Zelda. Suitable for randomizers.
 ZMapper lets you place and remove various markers indicating which screens 
 you've visited, what secrets you've checked for, and more. ZMapper uses global 
 hotkeys so that you don't need to switch between programs if playing in an 
-emulator. Currently, inputs are hardcoded and use the number pad.
+emulator. See the in-application help for more information.
 
 ## Keyboard Input
 Keyboard input is configurable. The default keyboard mapping is depicted. Functions are described below.
